@@ -73,6 +73,7 @@ module.exports = [
     links: [
       ['동탄역 SRT 인접 숙소 이용 안내', '/gyeonggi/station/dongtan-station/'],
       ['동탄·병점 생활권 보기', '/gyeonggi/life/dongtan-byeongjeom/'],
+      ['향남·봉담 생활권 이동 기준', '/gyeonggi/life/hyangnam-bongdam/'],
       ['화성 향남 산업단지 숙소 기준', '/gyeonggi/use/hwaseong-hyangnam-industrial/'],
       ['신도시 생활권 이용 안내', '/gyeonggi/use/newtown/'],
     ],
@@ -166,6 +167,7 @@ module.exports = [
       ['평촌 오피스텔 방문 절차는 어떻게 되나요?', '공동현관 출입 방식과 방문 가능 시간대를 확인한 뒤 예약을 확정해 드립니다.'],
     ],
     links: [
+      ['평촌·범계 생활권 이용 기준', '/gyeonggi/life/pyeongchon-beomgye/'],
       ['범계역 인근 숙소 이용 안내', '/gyeonggi/station/beomgye-station/'],
       ['인덕원역 생활권 확인', '/gyeonggi/station/indeogwon-station/'],
       ['안양·광명·군포·의왕권 생활권 안내', '/gyeonggi/area/anyang-gwangmyeong-gunpo-uiwang/'],
@@ -225,6 +227,7 @@ module.exports = [
     links: [
       ['다산·별내 신도시 생활권 보기', '/gyeonggi/life/dasan-donong/'],
       ['별내·갈매 생활권 확인', '/gyeonggi/life/byeollae-galmae/'],
+      ['평내호평·화도 생활권 보기', '/gyeonggi/life/pyeongnae-hopyeong/'],
       ['다산신도시 이용 기준', '/gyeonggi/use/dasan-newtown/'],
       ['펜션·독채 숙소 이용 안내', '/gyeonggi/use/pension/'],
     ],
@@ -337,6 +340,7 @@ module.exports = [
       ['금정역 인근 숙소도 가능한가요?', '숙소 정책 기준으로 방문 가능 여부를 확인해 드립니다. 예약 전 숙소명을 알려주세요.'],
     ],
     links: [
+      ['산본·금정 생활권 이용 기준', '/gyeonggi/life/sanbon-geumjeong/'],
       ['안양·광명·군포·의왕권 생활권 안내', '/gyeonggi/area/anyang-gwangmyeong-gunpo-uiwang/'],
       ['아파트·자택 방문 주소 확인', '/gyeonggi/use/apartment/'],
       ['예약 전 체크리스트 보기', '/gyeonggi/check/'],
@@ -355,6 +359,7 @@ module.exports = [
       ['백운밸리도 방문 가능한가요?', '신규 단지 중심 지역으로 방문 가능합니다. 공동현관 출입 방식을 함께 확인해 주세요.'],
     ],
     links: [
+      ['의왕 내손·백운밸리 생활권 보기', '/gyeonggi/life/uiwang-naeson-baekun/'],
       ['인덕원역 생활권 확인', '/gyeonggi/station/indeogwon-station/'],
       ['안양·광명·군포·의왕권 생활권 안내', '/gyeonggi/area/anyang-gwangmyeong-gunpo-uiwang/'],
       ['아파트 단지 출입 확인 안내', '/gyeonggi/check/apartment-access/'],
@@ -373,6 +378,7 @@ module.exports = [
       ['지식정보타운 오피스텔도 방문 가능한가요?', '가능합니다. 공동현관 출입 방식과 방문 가능 시간대를 확인해 주세요.'],
     ],
     links: [
+      ['과천·지식정보타운 생활권 보기', '/gyeonggi/life/gwacheon-knowledge-town/'],
       ['안양·광명·군포·의왕권 생활권 안내', '/gyeonggi/area/anyang-gwangmyeong-gunpo-uiwang/'],
       ['오피스텔 이용 전 확인사항', '/gyeonggi/use/officetel/'],
       ['예약 전 체크리스트 보기', '/gyeonggi/check/'],
@@ -463,6 +469,7 @@ module.exports = [
       ['구리역 근처 숙소에서 이용 가능한가요?', '숙소 정책 기준으로 방문 가능 여부를 예약 전에 확인해 드립니다.'],
     ],
     links: [
+      ['구리역·인창 생활권 이용 기준', '/gyeonggi/life/guri-inchang/'],
       ['별내·갈매 생활권 확인', '/gyeonggi/life/byeollae-galmae/'],
       ['구리역 이용 안내', '/gyeonggi/station/guri-station/'],
       ['남양주·구리·의정부·양주권 생활권 안내', '/gyeonggi/area/namyangju-guri-uijeongbu-yangju/'],
@@ -499,6 +506,7 @@ module.exports = [
       ['소요산 방향 숙소도 가능한가요?', '외곽 구간은 주소와 예약 시간대 기준으로 이동 가능 여부를 확인해 드립니다.'],
     ],
     links: [
+      ['동두천 지행·생연 생활권 보기', '/gyeonggi/life/dongducheon-jihaeng/'],
       ['포천·동두천·가평·연천 외곽권 안내', '/gyeonggi/area/pocheon-dongducheon-gapyeong-yeoncheon/'],
       ['외곽 지역 이동 기준 안내', '/gyeonggi/use/outer-area/'],
       ['야간·심야 예약 전 확인사항', '/gyeonggi/check/night-access/'],
@@ -517,6 +525,7 @@ module.exports = [
       ['여주 시내 아파트 방문 절차는요?', '단지명과 공동현관 출입 방식을 알려주시면 예약 전에 안내해 드립니다.'],
     ],
     links: [
+      ['여주역·남한강변 생활권 보기', '/gyeonggi/life/yeoju-namhangang/'],
       ['여주역 이용 안내', '/gyeonggi/station/yeoju-station/'],
       ['펜션·독채 숙소 이용 안내', '/gyeonggi/use/pension/'],
       ['외곽 지역 이동 기준 안내', '/gyeonggi/use/outer-area/'],
