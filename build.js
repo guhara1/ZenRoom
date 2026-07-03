@@ -222,6 +222,9 @@ function buildAreas() {
   <h1>경기도 8대 생활권 안내</h1>
   <p class="lead">경기도를 실제 이용 흐름에 맞춘 8개 생활권으로 나눠 안내합니다. 도시명보다 머무는 생활권 기준으로 확인하면 예약이 빠르고 정확해집니다.</p>
   ${cardGrid(areas.map((a) => ({ name: a.name, href: `/area/${a.slug}/`, desc: a.zones.slice(0, 4).join(' · ') })))}
+  ${T.hubIntroHtml('경기도 8대 생활권')}
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
   ${T.policyNoticeHtml()}
 </div></section>`;
   write('area', T.layout({
@@ -283,6 +286,9 @@ function buildCities() {
   <h1>경기도 31개 시·군 안내</h1>
   <p class="lead">경기도 전 시·군의 생활권 특징과 예약 전 확인사항을 안내합니다. 정확한 주소 기준으로 확인하면 어느 지역이든 빠르게 안내됩니다.</p>
   ${grouped}
+  ${T.hubIntroHtml('경기도 31개 시·군')}
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
@@ -463,6 +469,9 @@ function buildLife() {
   <h1>경기도 핵심 생활권 안내</h1>
   <p class="lead">실제 예약 문의가 많은 핵심 생활권을 모았습니다. 도시명보다 생활권 기준으로 확인하면 이동 기준과 건물 출입 방식을 더 정확하게 안내받을 수 있습니다.</p>
   ${cardGrid(life.map((l) => ({ name: l.name, href: `/life/${l.slug}/` })), true)}
+  ${T.hubIntroHtml('핵심 생활권')}
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
@@ -522,6 +531,9 @@ function buildStations() {
   <h1>경기도 역세권·KTX·SRT·터미널 안내</h1>
   <p class="lead">출장·여행 고객 문의가 많은 주요 역 인접 숙소권을 안내합니다. 출구별·노선별 구분 없이 역 생활권 기준으로 확인해 드립니다.</p>
   ${cardGrid(stations.map((s) => ({ name: s.name, href: `/station/${s.slug}/` })), true)}
+  ${T.hubIntroHtml('역세권·터미널 인접 숙소')}
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.7 });
 
@@ -588,6 +600,9 @@ function buildUse() {
   ${cardGrid(newtowns.filter((n) => n.type === 'newtown').map((n) => ({ name: n.name, href: `/use/${n.slug}/` })), true)}
   <h2>산업단지 이용 기준</h2>
   ${cardGrid(newtowns.filter((n) => n.type === 'industrial').map((n) => ({ name: n.name, href: `/use/${n.slug}/` })), true)}
+  ${T.hubIntroHtml('이용 장소 유형')}
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
@@ -693,34 +708,44 @@ function buildChecks() {
   <h1>예약 전 확인사항 안내</h1>
   <p class="lead">예약 전에 아래 항목만 확인해 주시면 어느 지역이든 대기 없이 정확하게 안내됩니다. 항목별 자세한 기준은 각 페이지에서 확인하세요.</p>
   ${cardGrid(checks.map((c) => ({ name: c.name, href: `/check/${c.slug}/` })), true)}
+  ${T.hubIntroHtml('예약 전 확인 항목')}
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
+  const otherChecks = (cur) => checks.filter((c) => c.slug !== cur.slug).slice(0, 5)
+    .map((c) => [c.name, `/check/${c.slug}/`]);
   for (const c of checks) {
     const pth = `/check/${c.slug}/`;
     const crumbs = [['경기도 출장마사지', '/'], ['예약 전 확인', '/check/'], [c.name, pth]];
     const title = `${c.h1}｜간다GO`;
     const desc = `${c.name} — 경기도 출장마사지 예약 전 확인 기준 안내.`;
+    const detailHtml = (c.body || []).map(([h, p]) => `<h2>${T.esc(h)}</h2><p>${T.esc(p)}</p>`).join('\n  ');
+    const faqs = [...(c.faq || []), ...SHARED_FAQ];
     const body = `
 <section class="section"><div class="container article">
   ${T.breadcrumbHtml(crumbs)}
   <h1>${T.esc(c.h1)}</h1>
   <p class="lead">${T.esc(c.intro)}</p>
   ${T.ctaHtml()}
-  <h2>확인 항목</h2>
+  <h2>핵심 확인 항목</h2>
   <ul class="checklist">${c.points.map((x) => `<li>${T.esc(x)}</li>`).join('')}</ul>
+  ${detailHtml}
   ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
+  ${T.faqHtml(faqs)}
   ${T.linkListHtml([
-    ['예약 전 확인사항 전체 보기', '/check/'],
+    ...otherChecks(c),
     ['이용 장소별 확인 기준', '/use/'],
     ['개인정보 처리방침', '/policy/privacy/'],
-    ['불법·선정적 서비스 불가 안내', '/policy/no-illegal/'],
   ], '함께 확인하면 좋은 안내')}
   ${T.policyNoticeHtml()}
+  ${T.whwHtml()}
 </div></section>`;
     write(`check/${c.slug}`, T.layout({
       title, desc, path: pth,
-      schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs)],
+      schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.6 });
   }
 }
@@ -816,9 +841,15 @@ function buildPolicyAndContact() {
   <h2>3. 제3자 제공</h2>
   <p>이용자의 정보를 제3자에게 제공하지 않습니다. 단, 법령에 따른 요청이 있는 경우는 예외로 합니다.</p>
   <h2>4. 이용자의 권리</h2>
-  <p>이용자는 언제든지 본인 정보의 삭제를 요청할 수 있습니다. 전화(${site.phone}) 또는 문의하기를 통해 요청해 주세요.</p>
-  <h2>5. 문의처</h2>
-  <p>개인정보 처리에 대한 문의: 전화예약 ${site.phone} / <a href="/contact/">문의하기</a></p>`);
+  <p>이용자는 언제든지 본인 정보의 삭제를 요청할 수 있습니다. 전화(${site.phone}) 또는 문의하기를 통해 요청해 주세요. 요청 시 지체 없이 확인하고 처리해 드립니다.</p>
+  <h2>5. 정보의 안전한 관리</h2>
+  <p>예약 상담 과정에서 확인한 연락처와 주소는 예약 이행에만 사용하며, 관리사에게는 방문에 필요한 최소한의 정보(주소·시간·건물 출입 방식)만 전달됩니다. 예약이 끝나면 관련 정보는 보관하지 않고 파기합니다.</p>
+  <h2>6. 문의 채널과 개인정보</h2>
+  <p>전화·문자·텔레그램 등 어떤 경로로 문의하시더라도 동일한 기준이 적용됩니다. 상담 내용은 예약 목적 외로 사용되지 않으며, 광고·마케팅 수신 동의를 받거나 제3자와 공유하지 않습니다.</p>
+  <h2>7. 처리방침 변경</h2>
+  <p>본 처리방침은 서비스 운영이나 관련 법령 변경에 따라 개정될 수 있으며, 변경 시 본 페이지를 통해 안내합니다.</p>
+  <h2>8. 문의처</h2>
+  <p>개인정보 처리에 대한 문의: 전화예약 ${site.phone} / <a href="/contact/">문의하기</a>. 관련 안내는 <a href="/check/privacy/">개인정보 처리 기준</a> 페이지에서도 확인할 수 있습니다.</p>`);
 
   mk('policy/no-illegal', '불법·선정적 서비스 불가 안내', '간다GO는 건전한 방문형 관리만 운영하며 불법·선정적 서비스를 제공하지 않습니다.', '불법·선정적 서비스 불가 안내', `
   <p class="lead">간다GO는 건전한 방문형 웰니스 관리 서비스만 운영합니다. 아래 기준은 모든 지역, 모든 프로그램, 모든 예약에 예외 없이 적용됩니다.</p>
@@ -830,8 +861,12 @@ function buildPolicyAndContact() {
     <li>본 사이트의 어떤 문구도 불법·선정적 서비스를 암시하지 않습니다.</li>
     <li>이용 중 불편 사항은 즉시 전화(${site.phone})로 알려주시면 조치합니다.</li>
   </ul>
+  <h2>제공하는 서비스의 범위</h2>
+  <p>간다GO가 제공하는 것은 스웨디시·아로마·타이·스포츠·딥티슈·발마사지 등 건전한 방문형 웰니스 관리입니다. 모든 관리는 예약 시 안내된 코스와 프로그램 기준으로만 진행되며, 그 외의 어떤 서비스도 제공하지 않습니다. 프로그램별 자세한 내용은 <a href="/program/">마사지 프로그램 안내</a>에서 확인할 수 있습니다.</p>
+  <h2>이용자와 관리사 보호</h2>
+  <p>이 원칙은 이용자와 관리사 모두를 보호하기 위한 것입니다. 관리사는 안전한 환경에서 전문적인 관리를 제공하고, 이용자는 명확한 기준 안에서 안심하고 서비스를 받을 수 있습니다. 여성 관리사·여성 고객 이용 시에도 동일한 기준과 예약 확인 절차가 적용됩니다.</p>
   <h2>왜 이 안내를 모든 페이지에 두나요</h2>
-  <p>방문형 관리 서비스에 대한 오해를 예방하고, 이용자와 관리사 모두가 안전한 기준 안에서 서비스를 이용·제공하기 위함입니다.</p>`);
+  <p>방문형 관리 서비스에 대한 오해를 예방하고, 이용자와 관리사 모두가 안전한 기준 안에서 서비스를 이용·제공하기 위함입니다. 오해의 소지가 있는 표현(상위노출 보장·최저가·1위·은밀 등)도 사이트 전체에서 사용하지 않습니다.</p>`);
 
   mk('policy/operation', '운영 기준', '간다GO 서비스 운영 기준 — 예약·진행·변경·중단 원칙 안내.', '서비스 운영 기준', `
   <p class="lead">간다GO의 예약·진행·변경 기준을 투명하게 안내합니다.</p>
@@ -842,7 +877,11 @@ function buildPolicyAndContact() {
   <h2>변경·취소 기준</h2>
   <p>관리사 이동 시작 전 변경·취소는 부담이 없습니다. 이동 중·도착 후 취소는 협의가 필요하며, 무단 노쇼는 이후 예약이 제한될 수 있습니다. <a href="/check/change-policy/">변경·취소 기준 자세히 보기</a></p>
   <h2>중단 기준</h2>
-  <p>불법·선정적 요구, 관리사에 대한 부적절한 행동, 심한 음주 상태 등의 경우 진행이 중단될 수 있습니다.</p>`);
+  <p>불법·선정적 요구, 관리사에 대한 부적절한 행동, 심한 음주 상태 등의 경우 진행이 중단될 수 있습니다. 이는 관리사의 안전과 서비스 품질을 지키기 위한 것으로, 예외 없이 적용됩니다.</p>
+  <h2>요금 기준</h2>
+  <p>60분·90분·120분 코스별 기준 요금은 경기도 전 지역 동일하게 안내되며, 추가 비용 없이 있는 그대로 안내해 드립니다. 외곽·장거리 구간의 이동 기준만 상담 시 최종 확인되며, 상위노출·최저가·1위 같은 과장 표현은 사용하지 않습니다. 자세한 기준은 <a href="/check/travel-fee/">이동 기준 안내</a>에서 확인할 수 있습니다.</p>
+  <h2>이용 고객 안내</h2>
+  <p>방문 관리가 처음이신 경우에도 특별한 준비 없이 이용하실 수 있습니다. 누울 공간과 수건만 준비해 주시면 되고, 건강 상태(통증·부상·임신 등)는 미리 알려주셔야 안전하게 관리 범위를 맞출 수 있습니다. 자세한 준비 사항은 <a href="/check/customer-notice/">이용 고객 안내</a>를 참고해 주세요.</p>`);
 
   mk('policy/author', '작성자·검수자 안내', '간다GO 콘텐츠의 작성·검수 기준과 책임 주체를 안내합니다.', '작성자·검수자 안내', `
   <p class="lead">이 사이트의 모든 콘텐츠는 아래 기준으로 작성·검수됩니다.</p>
@@ -852,6 +891,10 @@ function buildPolicyAndContact() {
   <p>경기도 공식 행정구역 자료와 시·군별 생활권 구조를 참고하며, AI 보조 도구를 사용할 수 있으나 최종 문구는 사람이 검수합니다. 중복·과장·허위 표현, 상위노출 보장·최저가·1위 같은 표현은 사용하지 않습니다.</p>
   <h2>검수 기준</h2>
   <p>모든 페이지는 게시 전 다음 기준으로 검수됩니다: 실제 서비스와 일치하는지, 불법·선정적 표현이 없는지, 지역 정보가 정확한지, 이용자에게 실질적으로 필요한 정보인지.</p>
+  <h2>경험 기반 콘텐츠(E-E-A-T)</h2>
+  <p>지역 페이지의 생활권 특징, 건물 출입 방식, 숙소 정책 안내는 실제 경기도 예약 상담에서 반복적으로 확인되는 경험을 바탕으로 작성됩니다. 광교·판교·동탄·일산·배곧 같은 생활권마다 오피스텔 공동현관 방식, 신도시 대단지 차량 등록, 산업단지 배후 숙소의 야간 출입처럼 실제 방문에서 확인한 차이를 반영합니다. 어디서나 볼 수 있는 일반적 요약이 아니라, 방문 서비스 운영 과정에서 얻은 실질적인 확인 정보를 제공하는 것을 목표로 합니다.</p>
+  <h2>표현 원칙</h2>
+  <p>이용자에게 오해를 줄 수 있는 표현은 사용하지 않습니다. 상위노출 보장, 최저가, 1위, VIP, 은밀 같은 표현이나 허위 후기·별점을 넣지 않으며, 실제 오프라인 매장이 없으므로 LocalBusiness·Review·별점 구조화 데이터도 사용하지 않습니다.</p>
   <h2>수정 요청</h2>
   <p>잘못된 지역 정보나 오래된 내용을 발견하시면 <a href="/contact/">문의하기</a>로 알려주세요. 확인 후 신속히 수정합니다.</p>`);
 
@@ -878,6 +921,10 @@ function buildPolicyAndContact() {
     <li>희망 코스 (60분 / 90분 / 120분)와 프로그램</li>
     <li>건물 출입 방식 (공동현관·프런트 등)</li>
   </ul>
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
+  <h2>지역·프로그램 바로가기</h2>
+  <p>방문 지역이나 원하는 관리를 먼저 살펴보실 수 있습니다. <a href="/cities/">31개 시·군 안내</a>에서 지역을, <a href="/program/">마사지 프로그램 안내</a>에서 관리 유형을, <a href="/check/">예약 전 확인</a>에서 방문 준비 사항을 확인해 보세요.</p>
   <h2>웹사이트 제작·제휴 문의</h2>
   <p>웹사이트 제작 문의와 제휴 제안은 텔레그램으로 받고 있습니다.</p>
   <div class="footer-cta">
