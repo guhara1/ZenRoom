@@ -16,6 +16,7 @@ const checks = require('./data/check');
 const programs = require('./data/programs');
 const admin = require('./data/admin');
 const romanize = require('./lib/romanize');
+const dongContent = require('./lib/dongContent');
 
 const OUT = __dirname;
 const pages = []; // sitemap.xml 수집: {path, priority, noindex}
@@ -352,41 +353,47 @@ function dongPage(c, gu, dongName) {
   const dslug = romanize(dongName);
   const rel = gu ? `${c.slug}/${gu.slug}/${dslug}` : `${c.slug}/${dslug}`;
   const pth = `/${rel}/`;
-  const isEupMyeon = /[읍면]$/.test(dongName);
-  const unitLabel = isEupMyeon ? '읍·면' : '행정동';
+  const region = regionBySlug[c.region];
+  const dc = dongContent.build({ city: c, gu, name: dongName, region });
   const crumbs = [
     ['경기도 출장마사지', '/'],
     [c.name, `/${c.slug}/`],
     ...(gu ? [[gu.name, `/${c.slug}/${gu.slug}/`]] : []),
     [dongName, pth],
   ];
-  const title = `${c.name} ${dongName} 출장마사지 방문 안내`;
-  const desc = `${c.name}${gu ? ' ' + gu.name : ''} ${dongName} 방문 관리 예약 전 확인 안내.`;
-  const dedupNote = isEupMyeon
-    ? `${dongName}은 ${c.name}의 ${unitLabel} 지역으로, 리 단위 세부 주소까지 알려주시면 진입로와 이동 기준을 함께 확인해 드립니다.`
-    : `1동·2동처럼 번호로 나뉜 세부 행정동은 생활권이 같아 이 대표 페이지에서 함께 안내합니다. 검색 노출 목적의 중복 페이지는 만들지 않습니다.`;
+  const title = `${c.name} ${dongName} 출장마사지｜${dc.label} 방문 안내`;
+  const desc = `${c.name}${gu ? ' ' + gu.name : ''} ${dongName} 출장마사지 방문 기준과 예약 전 확인 안내.`;
+  const faqs = [...dc.faq, ...SHARED_FAQ];
+  const sectionsHtml = dc.sections
+    .map(([h, p]) => `<h2>${T.esc(h)}</h2><p>${T.esc(p)}</p>`).join('\n  ');
+  const links = [
+    [`${c.name} 전체 안내`, `/${c.slug}/`],
+    ...(gu ? [[`${gu.name} 행정동 안내`, `/${c.slug}/${gu.slug}/`]] : []),
+    ...c.links.slice(0, 2),
+    ...dc.uses,
+    [`${region.name} 생활권 보기`, `/${region.slug}/`],
+  ];
   const body = `
 <section class="section"><div class="container article">
   ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(c.name)} ${T.esc(dongName)} 출장마사지 방문 안내</h1>
-  <p class="lead">${T.esc(dongName)}은(는) ${T.esc(c.name)}${gu ? ' ' + T.esc(gu.name) : ''}의 ${unitLabel}입니다. 방문 관리는 도로명 주소와 동·호수(또는 숙소명) 기준으로 안내되며, 정확한 주소를 알려주시면 방문 가능 여부와 절차를 바로 확인해 드립니다.</p>
+  <h1>${T.esc(c.name)} ${T.esc(dongName)} 출장마사지 · ${T.esc(dc.label)} 방문 안내</h1>
+  <p class="lead">${T.esc(dc.lead)}</p>
   ${T.ctaHtml()}
-  <h2>이 지역 안내 기준</h2>
-  <p>${T.esc(dedupNote)}</p>
-  <p>${T.esc(c.name)} 전체 생활권 특징과 숙소·오피스텔·아파트 이용 기준은 <a href="/${c.slug}/">${T.esc(c.name)} 안내 페이지</a>에서 확인할 수 있습니다. 건물 출입 방식(공동현관·경비실·프런트)과 주차 여부를 예약 전에 함께 확인해 주세요.</p>
-  ${T.checklistHtml()}
-  ${T.linkListHtml([
-    [`${c.name} 전체 안내`, `/${c.slug}/`],
-    ...(gu ? [[`${gu.name} 행정동 안내`, `/${c.slug}/${gu.slug}/`]] : []),
-    ['이용 장소별 확인 기준', '/use/'],
-    ['예약 전 확인사항', '/check/'],
-  ], '관련 안내 보기')}
+  ${sectionsHtml}
+  <h2>가까운 생활권 함께 보기</h2>
+  <p>${T.esc(dongName)} 방문은 ${T.esc(c.name)}의 대표 생활권(${c.zones.map((z) => T.esc(z)).join(', ')}) 기준과 함께 안내됩니다. ${T.esc(c.name)} 전체의 숙소·오피스텔·아파트 이용 기준과 역세권 정보는 <a href="/${c.slug}/">${T.esc(c.name)} 안내 페이지</a>에서 확인할 수 있습니다.</p>
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
+  ${T.checklistHtml(dc.checks)}
+  ${T.faqHtml(faqs)}
+  ${T.linkListHtml(links, '관련 지역·안내 보기')}
   ${T.policyNoticeHtml()}
+  ${T.whwHtml()}
 </div></section>`;
   write(rel, T.layout({
-    title, desc, path: pth, noindex: true,
-    schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs)],
-  }, body), { noindex: true });
+    title, desc, path: pth,
+    schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
+  }, body), { priority: 0.5 });
 }
 
 function buildAdmin() {
