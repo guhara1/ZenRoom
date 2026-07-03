@@ -4,7 +4,7 @@ module.exports = {
   brand: '간다GO',
   brandEn: 'GandaGO',
   // TODO: 실제 도메인으로 교체하세요 (canonical, og:url, sitemap.xml에 사용)
-  siteUrl: 'https://gandago.kr',
+  siteUrl: 'https://zenroom.pages.dev',
   phone: '0508-202-4719',
   phoneHref: 'tel:0508-202-4719',
   // TODO: 실제 텔레그램 계정으로 교체하세요 (푸터 제작문의·제휴문의 버튼)

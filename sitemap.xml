@@ -1,831 +1,911 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://gandago.kr/gyeonggi/</loc>
+    <loc>https://zenroom.pages.dev/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/south/</loc>
+    <loc>https://zenroom.pages.dev/south/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/north/</loc>
+    <loc>https://zenroom.pages.dev/north/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/west/</loc>
+    <loc>https://zenroom.pages.dev/west/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/east/</loc>
+    <loc>https://zenroom.pages.dev/east/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/</loc>
+    <loc>https://zenroom.pages.dev/area/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/suwon-yongin-hwaseong/</loc>
+    <loc>https://zenroom.pages.dev/area/suwon-yongin-hwaseong/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/seongnam-bundang-pangyo/</loc>
+    <loc>https://zenroom.pages.dev/area/seongnam-bundang-pangyo/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/anyang-gwangmyeong-gunpo-uiwang/</loc>
+    <loc>https://zenroom.pages.dev/area/anyang-gwangmyeong-gunpo-uiwang/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/bucheon-siheung-ansan-gimpo/</loc>
+    <loc>https://zenroom.pages.dev/area/bucheon-siheung-ansan-gimpo/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/pyeongtaek-anseong-osan-icheon/</loc>
+    <loc>https://zenroom.pages.dev/area/pyeongtaek-anseong-osan-icheon/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/goyang-paju-ilsan/</loc>
+    <loc>https://zenroom.pages.dev/area/goyang-paju-ilsan/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/namyangju-guri-uijeongbu-yangju/</loc>
+    <loc>https://zenroom.pages.dev/area/namyangju-guri-uijeongbu-yangju/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/area/pocheon-dongducheon-gapyeong-yeoncheon/</loc>
+    <loc>https://zenroom.pages.dev/area/pocheon-dongducheon-gapyeong-yeoncheon/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/cities/</loc>
+    <loc>https://zenroom.pages.dev/cities/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/suwon-si/</loc>
+    <loc>https://zenroom.pages.dev/suwon-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/seongnam-si/</loc>
+    <loc>https://zenroom.pages.dev/seongnam-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/yongin-si/</loc>
+    <loc>https://zenroom.pages.dev/yongin-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/hwaseong-si/</loc>
+    <loc>https://zenroom.pages.dev/hwaseong-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/goyang-si/</loc>
+    <loc>https://zenroom.pages.dev/goyang-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/bucheon-si/</loc>
+    <loc>https://zenroom.pages.dev/bucheon-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/ansan-si/</loc>
+    <loc>https://zenroom.pages.dev/ansan-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/pyeongtaek-si/</loc>
+    <loc>https://zenroom.pages.dev/pyeongtaek-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/anyang-si/</loc>
+    <loc>https://zenroom.pages.dev/anyang-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/siheung-si/</loc>
+    <loc>https://zenroom.pages.dev/siheung-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/gimpo-si/</loc>
+    <loc>https://zenroom.pages.dev/gimpo-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/namyangju-si/</loc>
+    <loc>https://zenroom.pages.dev/namyangju-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/paju-si/</loc>
+    <loc>https://zenroom.pages.dev/paju-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/uijeongbu-si/</loc>
+    <loc>https://zenroom.pages.dev/uijeongbu-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/gwangmyeong-si/</loc>
+    <loc>https://zenroom.pages.dev/gwangmyeong-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/hanam-si/</loc>
+    <loc>https://zenroom.pages.dev/hanam-si/</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/osan-si/</loc>
+    <loc>https://zenroom.pages.dev/osan-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/gunpo-si/</loc>
+    <loc>https://zenroom.pages.dev/gunpo-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/uiwang-si/</loc>
+    <loc>https://zenroom.pages.dev/uiwang-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/gwacheon-si/</loc>
+    <loc>https://zenroom.pages.dev/gwacheon-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/gwangju-si/</loc>
+    <loc>https://zenroom.pages.dev/gwangju-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/icheon-si/</loc>
+    <loc>https://zenroom.pages.dev/icheon-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/anseong-si/</loc>
+    <loc>https://zenroom.pages.dev/anseong-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/yangju-si/</loc>
+    <loc>https://zenroom.pages.dev/yangju-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/guri-si/</loc>
+    <loc>https://zenroom.pages.dev/guri-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/pocheon-si/</loc>
+    <loc>https://zenroom.pages.dev/pocheon-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/dongducheon-si/</loc>
+    <loc>https://zenroom.pages.dev/dongducheon-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/yeoju-si/</loc>
+    <loc>https://zenroom.pages.dev/yeoju-si/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/yangpyeong-gun/</loc>
+    <loc>https://zenroom.pages.dev/yangpyeong-gun/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/gapyeong-gun/</loc>
+    <loc>https://zenroom.pages.dev/gapyeong-gun/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/yeoncheon-gun/</loc>
+    <loc>https://zenroom.pages.dev/yeoncheon-gun/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/</loc>
+    <loc>https://zenroom.pages.dev/suwon-si/jangan-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/suwon-si/gwonseon-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/suwon-si/paldal-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/suwon-si/yeongtong-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/seongnam-si/sujeong-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/seongnam-si/jungwon-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/seongnam-si/bundang-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/yongin-si/cheoin-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/yongin-si/giheung-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/yongin-si/suji-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/goyang-si/deogyang-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/goyang-si/ilsandong-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/goyang-si/ilsanseo-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/bucheon-si/wonmi-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/bucheon-si/sosa-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/bucheon-si/ojeong-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/ansan-si/sangnok-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/ansan-si/danwon-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/anyang-si/manan-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/anyang-si/dongan-gu/</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://zenroom.pages.dev/life/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/gwanggyo-yeongtong/</loc>
+    <loc>https://zenroom.pages.dev/life/gwanggyo-yeongtong/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/ingye-suwon-cityhall/</loc>
+    <loc>https://zenroom.pages.dev/life/ingye-suwon-cityhall/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/suwon-station-maesan/</loc>
+    <loc>https://zenroom.pages.dev/life/suwon-station-maesan/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/bundang-pangyo/</loc>
+    <loc>https://zenroom.pages.dev/life/bundang-pangyo/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/jeongja-sunae/</loc>
+    <loc>https://zenroom.pages.dev/life/jeongja-sunae/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/seohyeon-imae/</loc>
+    <loc>https://zenroom.pages.dev/life/seohyeon-imae/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/yatap-moran/</loc>
+    <loc>https://zenroom.pages.dev/life/yatap-moran/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/dongtan-byeongjeom/</loc>
+    <loc>https://zenroom.pages.dev/life/dongtan-byeongjeom/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/suji-jukjeon/</loc>
+    <loc>https://zenroom.pages.dev/life/suji-jukjeon/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/giheung-singal/</loc>
+    <loc>https://zenroom.pages.dev/life/giheung-singal/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/pyeongtaek-jije-godeok/</loc>
+    <loc>https://zenroom.pages.dev/life/pyeongtaek-jije-godeok/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/osan-segyo/</loc>
+    <loc>https://zenroom.pages.dev/life/osan-segyo/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/bucheon-jungdong-sangdong/</loc>
+    <loc>https://zenroom.pages.dev/life/bucheon-jungdong-sangdong/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/songnae-bucheon-station/</loc>
+    <loc>https://zenroom.pages.dev/life/songnae-bucheon-station/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/yeokgok-sosa-okgil/</loc>
+    <loc>https://zenroom.pages.dev/life/yeokgok-sosa-okgil/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/baegot-jeongwang/</loc>
+    <loc>https://zenroom.pages.dev/life/baegot-jeongwang/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/oido-wolgot/</loc>
+    <loc>https://zenroom.pages.dev/life/oido-wolgot/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/ansan-jungang-gojan/</loc>
+    <loc>https://zenroom.pages.dev/life/ansan-jungang-gojan/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/banwol-sihwa-industrial/</loc>
+    <loc>https://zenroom.pages.dev/life/banwol-sihwa-industrial/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/gimpo-janggi-gurae/</loc>
+    <loc>https://zenroom.pages.dev/life/gimpo-janggi-gurae/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/gwangmyeong-station-cheolsan/</loc>
+    <loc>https://zenroom.pages.dev/life/gwangmyeong-station-cheolsan/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/ilsan-lake-park/</loc>
+    <loc>https://zenroom.pages.dev/life/ilsan-lake-park/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/madu-baekseok/</loc>
+    <loc>https://zenroom.pages.dev/life/madu-baekseok/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/hwajeong-haengsin/</loc>
+    <loc>https://zenroom.pages.dev/life/hwajeong-haengsin/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/unjeong-newtown/</loc>
+    <loc>https://zenroom.pages.dev/life/unjeong-newtown/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/yadang-geumchon/</loc>
+    <loc>https://zenroom.pages.dev/life/yadang-geumchon/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/dasan-donong/</loc>
+    <loc>https://zenroom.pages.dev/life/dasan-donong/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/byeollae-galmae/</loc>
+    <loc>https://zenroom.pages.dev/life/byeollae-galmae/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/uijeongbu-minrak/</loc>
+    <loc>https://zenroom.pages.dev/life/uijeongbu-minrak/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/yangju-okjeong/</loc>
+    <loc>https://zenroom.pages.dev/life/yangju-okjeong/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/misa-gamil/</loc>
+    <loc>https://zenroom.pages.dev/life/misa-gamil/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/gwangju-taejeon-gyeongan/</loc>
+    <loc>https://zenroom.pages.dev/life/gwangju-taejeon-gyeongan/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/icheon-bubal/</loc>
+    <loc>https://zenroom.pages.dev/life/icheon-bubal/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/anseong-gongdo/</loc>
+    <loc>https://zenroom.pages.dev/life/anseong-gongdo/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/yangpyeong-gapyeong-pension/</loc>
+    <loc>https://zenroom.pages.dev/life/yangpyeong-gapyeong-pension/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/pocheon-yeoncheon-outer/</loc>
+    <loc>https://zenroom.pages.dev/life/pocheon-yeoncheon-outer/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/pyeongchon-beomgye/</loc>
+    <loc>https://zenroom.pages.dev/life/pyeongchon-beomgye/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/sanbon-geumjeong/</loc>
+    <loc>https://zenroom.pages.dev/life/sanbon-geumjeong/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/uiwang-naeson-baekun/</loc>
+    <loc>https://zenroom.pages.dev/life/uiwang-naeson-baekun/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/gwacheon-knowledge-town/</loc>
+    <loc>https://zenroom.pages.dev/life/gwacheon-knowledge-town/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/guri-inchang/</loc>
+    <loc>https://zenroom.pages.dev/life/guri-inchang/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/dongducheon-jihaeng/</loc>
+    <loc>https://zenroom.pages.dev/life/dongducheon-jihaeng/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/yeoju-namhangang/</loc>
+    <loc>https://zenroom.pages.dev/life/yeoju-namhangang/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/hyangnam-bongdam/</loc>
+    <loc>https://zenroom.pages.dev/life/hyangnam-bongdam/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/life/pyeongnae-hopyeong/</loc>
+    <loc>https://zenroom.pages.dev/life/pyeongnae-hopyeong/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/</loc>
+    <loc>https://zenroom.pages.dev/station/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/suwon-station/</loc>
+    <loc>https://zenroom.pages.dev/station/suwon-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/gwanggyo-jungang-station/</loc>
+    <loc>https://zenroom.pages.dev/station/gwanggyo-jungang-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/yeongtong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/yeongtong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/suwon-cityhall-station/</loc>
+    <loc>https://zenroom.pages.dev/station/suwon-cityhall-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/pangyo-station/</loc>
+    <loc>https://zenroom.pages.dev/station/pangyo-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/jeongja-station/</loc>
+    <loc>https://zenroom.pages.dev/station/jeongja-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/seohyeon-station/</loc>
+    <loc>https://zenroom.pages.dev/station/seohyeon-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/yatap-station/</loc>
+    <loc>https://zenroom.pages.dev/station/yatap-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/dongtan-station/</loc>
+    <loc>https://zenroom.pages.dev/station/dongtan-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/byeongjeom-station/</loc>
+    <loc>https://zenroom.pages.dev/station/byeongjeom-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/osan-station/</loc>
+    <loc>https://zenroom.pages.dev/station/osan-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/pyeongtaek-station/</loc>
+    <loc>https://zenroom.pages.dev/station/pyeongtaek-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/pyeongtaek-jije-station/</loc>
+    <loc>https://zenroom.pages.dev/station/pyeongtaek-jije-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/gwangmyeong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/gwangmyeong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/bucheon-station/</loc>
+    <loc>https://zenroom.pages.dev/station/bucheon-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/songnae-station/</loc>
+    <loc>https://zenroom.pages.dev/station/songnae-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/sangdong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/sangdong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/siheung-cityhall-station/</loc>
+    <loc>https://zenroom.pages.dev/station/siheung-cityhall-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/jeongwang-station/</loc>
+    <loc>https://zenroom.pages.dev/station/jeongwang-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/oido-station/</loc>
+    <loc>https://zenroom.pages.dev/station/oido-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/ansan-jungang-station/</loc>
+    <loc>https://zenroom.pages.dev/station/ansan-jungang-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/gojan-station/</loc>
+    <loc>https://zenroom.pages.dev/station/gojan-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/anyang-station/</loc>
+    <loc>https://zenroom.pages.dev/station/anyang-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/beomgye-station/</loc>
+    <loc>https://zenroom.pages.dev/station/beomgye-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/indeogwon-station/</loc>
+    <loc>https://zenroom.pages.dev/station/indeogwon-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/jeongbalsan-station/</loc>
+    <loc>https://zenroom.pages.dev/station/jeongbalsan-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/daehwa-station/</loc>
+    <loc>https://zenroom.pages.dev/station/daehwa-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/madu-station/</loc>
+    <loc>https://zenroom.pages.dev/station/madu-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/baekseok-station/</loc>
+    <loc>https://zenroom.pages.dev/station/baekseok-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/hwajeong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/hwajeong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/unjeong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/unjeong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/yadang-station/</loc>
+    <loc>https://zenroom.pages.dev/station/yadang-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/geumchon-station/</loc>
+    <loc>https://zenroom.pages.dev/station/geumchon-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/guri-station/</loc>
+    <loc>https://zenroom.pages.dev/station/guri-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/donong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/donong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/byeollae-station/</loc>
+    <loc>https://zenroom.pages.dev/station/byeollae-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/uijeongbu-station/</loc>
+    <loc>https://zenroom.pages.dev/station/uijeongbu-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/hoeryong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/hoeryong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/yangju-station/</loc>
+    <loc>https://zenroom.pages.dev/station/yangju-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/deokjeong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/deokjeong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/hanam-geomdansan-station/</loc>
+    <loc>https://zenroom.pages.dev/station/hanam-geomdansan-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/icheon-station/</loc>
+    <loc>https://zenroom.pages.dev/station/icheon-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/yeoju-station/</loc>
+    <loc>https://zenroom.pages.dev/station/yeoju-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/gapyeong-station/</loc>
+    <loc>https://zenroom.pages.dev/station/gapyeong-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/station/gyeonggi-gwangju-station/</loc>
+    <loc>https://zenroom.pages.dev/station/gyeonggi-gwangju-station/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/</loc>
+    <loc>https://zenroom.pages.dev/use/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/home/</loc>
+    <loc>https://zenroom.pages.dev/use/home/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/hotel/</loc>
+    <loc>https://zenroom.pages.dev/use/hotel/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/officetel/</loc>
+    <loc>https://zenroom.pages.dev/use/officetel/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/apartment/</loc>
+    <loc>https://zenroom.pages.dev/use/apartment/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/business-district/</loc>
+    <loc>https://zenroom.pages.dev/use/business-district/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/industrial-area/</loc>
+    <loc>https://zenroom.pages.dev/use/industrial-area/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/newtown/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/station-terminal/</loc>
+    <loc>https://zenroom.pages.dev/use/station-terminal/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/business-trip-accommodation/</loc>
+    <loc>https://zenroom.pages.dev/use/business-trip-accommodation/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/pension/</loc>
+    <loc>https://zenroom.pages.dev/use/pension/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/night/</loc>
+    <loc>https://zenroom.pages.dev/use/night/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/outer-area/</loc>
+    <loc>https://zenroom.pages.dev/use/outer-area/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/gwanggyo-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/gwanggyo-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/pangyo-technovalley/</loc>
+    <loc>https://zenroom.pages.dev/use/pangyo-technovalley/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/dongtan-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/dongtan-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/pyeongtaek-godeok-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/pyeongtaek-godeok-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/wirye-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/wirye-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/misa-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/misa-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/dasan-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/dasan-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/byeollae-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/byeollae-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/unjeong-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/unjeong-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/ilsan-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/ilsan-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/gimpo-hangang-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/gimpo-hangang-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/yangju-okjeong-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/yangju-okjeong-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/baegot-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/baegot-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/bucheon-okgil-newtown/</loc>
+    <loc>https://zenroom.pages.dev/use/bucheon-okgil-newtown/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/banwol-sihwa-industrial/</loc>
+    <loc>https://zenroom.pages.dev/use/banwol-sihwa-industrial/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/pyeongtaek-godeok-industrial/</loc>
+    <loc>https://zenroom.pages.dev/use/pyeongtaek-godeok-industrial/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/hwaseong-hyangnam-industrial/</loc>
+    <loc>https://zenroom.pages.dev/use/hwaseong-hyangnam-industrial/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/icheon-bubal-industrial/</loc>
+    <loc>https://zenroom.pages.dev/use/icheon-bubal-industrial/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/anseong-gongdo-industrial/</loc>
+    <loc>https://zenroom.pages.dev/use/anseong-gongdo-industrial/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/paju-industrial-area/</loc>
+    <loc>https://zenroom.pages.dev/use/paju-industrial-area/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/gimpo-industrial-area/</loc>
+    <loc>https://zenroom.pages.dev/use/gimpo-industrial-area/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/namyangju-industrial-area/</loc>
+    <loc>https://zenroom.pages.dev/use/namyangju-industrial-area/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/use/gwangmyeong-station-area/</loc>
+    <loc>https://zenroom.pages.dev/use/gwangmyeong-station-area/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/</loc>
+    <loc>https://zenroom.pages.dev/check/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/address/</loc>
+    <loc>https://zenroom.pages.dev/check/address/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/building-access/</loc>
+    <loc>https://zenroom.pages.dev/check/building-access/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/apartment-access/</loc>
+    <loc>https://zenroom.pages.dev/check/apartment-access/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/hotel-policy/</loc>
+    <loc>https://zenroom.pages.dev/check/hotel-policy/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/officetel-rule/</loc>
+    <loc>https://zenroom.pages.dev/check/officetel-rule/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/industrial-area/</loc>
+    <loc>https://zenroom.pages.dev/check/industrial-area/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/newtown-apartment/</loc>
+    <loc>https://zenroom.pages.dev/check/newtown-apartment/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/travel-fee/</loc>
+    <loc>https://zenroom.pages.dev/check/travel-fee/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/night-access/</loc>
+    <loc>https://zenroom.pages.dev/check/night-access/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/time/</loc>
+    <loc>https://zenroom.pages.dev/check/time/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/change-policy/</loc>
+    <loc>https://zenroom.pages.dev/check/change-policy/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/privacy/</loc>
+    <loc>https://zenroom.pages.dev/check/privacy/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/service-policy/</loc>
+    <loc>https://zenroom.pages.dev/check/service-policy/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/check/customer-notice/</loc>
+    <loc>https://zenroom.pages.dev/check/customer-notice/</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/</loc>
+    <loc>https://zenroom.pages.dev/program/</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/swedish/</loc>
+    <loc>https://zenroom.pages.dev/program/swedish/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/thai-massage/</loc>
+    <loc>https://zenroom.pages.dev/program/thai-massage/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/aroma-therapy/</loc>
+    <loc>https://zenroom.pages.dev/program/aroma-therapy/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/sports-massage/</loc>
+    <loc>https://zenroom.pages.dev/program/sports-massage/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/foot-massage/</loc>
+    <loc>https://zenroom.pages.dev/program/foot-massage/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/lomi-lomi/</loc>
+    <loc>https://zenroom.pages.dev/program/lomi-lomi/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/deep-tissue/</loc>
+    <loc>https://zenroom.pages.dev/program/deep-tissue/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/couple/</loc>
+    <loc>https://zenroom.pages.dev/program/couple/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/late-night/</loc>
+    <loc>https://zenroom.pages.dev/program/late-night/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/men/</loc>
+    <loc>https://zenroom.pages.dev/program/men/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/program/women/</loc>
+    <loc>https://zenroom.pages.dev/program/women/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/policy/privacy/</loc>
+    <loc>https://zenroom.pages.dev/policy/privacy/</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/policy/no-illegal/</loc>
+    <loc>https://zenroom.pages.dev/policy/no-illegal/</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/policy/operation/</loc>
+    <loc>https://zenroom.pages.dev/policy/operation/</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/policy/author/</loc>
+    <loc>https://zenroom.pages.dev/policy/author/</loc>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/contact/</loc>
+    <loc>https://zenroom.pages.dev/contact/</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://gandago.kr/gyeonggi/sitemap/</loc>
+    <loc>https://zenroom.pages.dev/sitemap/</loc>
     <priority>0.3</priority>
   </url>
 </urlset>

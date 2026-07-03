@@ -1,7 +1,15 @@
 # 간다GO — 경기도 전지역 출장마사지 안내 사이트
 
 경기도 31개 시·군 생활권 기준의 정적 안내 사이트입니다. 의존성 없는 Node 빌드 스크립트가
-데이터 파일에서 198개 HTML 페이지와 sitemap.xml, robots.txt를 생성합니다.
+데이터 파일에서 650여 개 HTML 페이지와 sitemap.xml, robots.txt, _redirects를 생성합니다.
+
+## URL 구조
+
+- 메인은 도메인 루트(`/`)입니다. 구 `/gyeonggi/...` URL은 `_redirects`가 301로 새 경로에 연결합니다 (Cloudflare Pages).
+- 계층: `/{시}/` → `/{시}/{구}/` (일반구 있는 7개 시) → `/{시}/{구}/{동}/`, 구가 없는 시·군은 `/{시}/{동}/`
+- 행정동 페이지는 번호 동(1동·2동·3동)을 대표 1개로 통합하고 **noindex** 처리해
+  도어웨이 페이지로 판정되지 않도록 합니다 (사이트맵에서도 제외). 색인 대상은
+  메인·권역·생활권·시·군·구·역세권·프로그램 등 본문이 충분한 페이지만입니다.
 
 ## 빌드
 
@@ -14,11 +22,11 @@ node build.js
 
 ## 배포 전 반드시 교체할 값 — `data/site.js`
 
-| 항목 | 현재 값 (자리표시자) | 설명 |
+| 항목 | 현재 값 | 설명 |
 |---|---|---|
-| `siteUrl` | `https://gandago.kr` | 실제 도메인 — canonical·og:url·sitemap에 사용 |
-| `telegramBuild` | `https://t.me/gandago_web` | 푸터 "웹사이트 제작문의" 버튼 링크 |
-| `telegramPartner` | `https://t.me/gandago_partner` | 푸터 "제휴문의" 버튼 링크 |
+| `siteUrl` | `https://zenroom.pages.dev` | 커스텀 도메인 연결 시 교체 — canonical·og:url·sitemap에 사용 |
+| `telegramBuild` | `https://t.me/gandago_web` | (자리표시자) 푸터 "웹사이트 제작문의" 버튼 링크 |
+| `telegramPartner` | `https://t.me/gandago_partner` | (자리표시자) 푸터 "제휴문의" 버튼 링크 |
 
 값 수정 후 `node build.js`를 다시 실행하면 전체 페이지에 반영됩니다.
 `assets/img/og-main.svg`는 자리표시자입니다 — 실제 배포 시 1200×630 PNG/WebP로 교체하고

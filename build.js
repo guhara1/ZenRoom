@@ -14,6 +14,8 @@ const newtowns = require('./data/newtowns');
 const places = require('./data/places');
 const checks = require('./data/check');
 const programs = require('./data/programs');
+const admin = require('./data/admin');
+const romanize = require('./lib/romanize');
 
 const OUT = __dirname;
 const pages = []; // sitemap.xml 수집: {path, priority, noindex}
@@ -52,7 +54,7 @@ function pricingHtml() {
       <p>60·90·120분 코스별 기준 요금이며, 추가 비용 없이 있는 그대로 안내해 드립니다.</p>
     </div>
     <div class="pricing-grid">${cards}</div>
-    <p class="pricing-note">${site.pricingNote} <a href="/gyeonggi/check/travel-fee/">상세 요금 안내 보기 →</a></p>
+    <p class="pricing-note">${site.pricingNote} <a href="/check/travel-fee/">상세 요금 안내 보기 →</a></p>
   </div>
 </section>`;
 }
@@ -68,7 +70,7 @@ function cardGrid(items, chips = false) {
 
 /* ---------------------------------------------------------------- 메인 */
 function buildMain() {
-  const pth = '/gyeonggi/';
+  const pth = '/';
   const title = '경기도 출장마사지｜수원·성남·용인·고양·부천·평택 홈타이 지역 안내';
   const desc = '경기도 출장마사지·홈타이 31개 시·군 생활권과 호텔·오피스텔·자택 이용 기준 안내.';
   const faqs = [
@@ -88,12 +90,12 @@ function buildMain() {
     <p>수원, 성남, 용인, 고양, 부천, 화성, 평택, 안산, 남양주, 파주 등 경기도 31개 시·군 주요 생활권과 호텔·오피스텔·자택 이용 전 확인사항을 안내합니다.</p>
     <div class="hero__cta">
       <a class="btn btn--accent" href="${site.phoneHref}">전화 예약 ${site.phone}</a>
-      <a class="btn btn--ghost" href="/gyeonggi/south/">경기남부 보기</a>
-      <a class="btn btn--ghost" href="/gyeonggi/north/">경기북부 보기</a>
-      <a class="btn btn--ghost" href="/gyeonggi/west/">경기서부 보기</a>
-      <a class="btn btn--ghost" href="/gyeonggi/east/">경기동부 보기</a>
-      <a class="btn btn--ghost" href="/gyeonggi/cities/">도시별 안내</a>
-      <a class="btn btn--ghost" href="/gyeonggi/check/">예약 전 확인</a>
+      <a class="btn btn--ghost" href="/south/">경기남부 보기</a>
+      <a class="btn btn--ghost" href="/north/">경기북부 보기</a>
+      <a class="btn btn--ghost" href="/west/">경기서부 보기</a>
+      <a class="btn btn--ghost" href="/east/">경기동부 보기</a>
+      <a class="btn btn--ghost" href="/cities/">도시별 안내</a>
+      <a class="btn btn--ghost" href="/check/">예약 전 확인</a>
     </div>
   </div>
 </section>
@@ -108,36 +110,36 @@ ${pricingHtml()}
 <section class="section">
   <div class="container">
     <div class="section-head"><h2>경기도 8대 생활권 안내</h2><p>권역별 생활권 특징과 이용 기준을 확인하세요.</p></div>
-    ${cardGrid(areas.map((a) => ({ name: a.name, href: `/gyeonggi/area/${a.slug}/`, desc: a.zones.slice(0, 4).join(' · ') })))}
+    ${cardGrid(areas.map((a) => ({ name: a.name, href: `/area/${a.slug}/`, desc: a.zones.slice(0, 4).join(' · ') })))}
   </div>
 </section>
 <section class="section section--tint">
   <div class="container">
     <div class="section-head"><h2>경기도 31개 시·군 안내</h2><p>시·군별 생활권과 예약 전 확인사항을 안내합니다.</p></div>
-    ${cardGrid(cities.map((c) => ({ name: c.name, href: `/gyeonggi/${c.slug}/` })), true)}
+    ${cardGrid(cities.map((c) => ({ name: c.name, href: `/${c.slug}/` })), true)}
   </div>
 </section>
 <section class="section">
   <div class="container">
     <div class="section-head"><h2>신도시·산업단지·역세권 생활권</h2><p>이용 문의가 많은 핵심 거점을 모았습니다.</p></div>
     ${cardGrid([
-      { name: '광교신도시', href: '/gyeonggi/use/gwanggyo-newtown/' },
-      { name: '판교테크노밸리', href: '/gyeonggi/use/pangyo-technovalley/' },
-      { name: '동탄신도시', href: '/gyeonggi/use/dongtan-newtown/' },
-      { name: '평택 고덕', href: '/gyeonggi/use/pyeongtaek-godeok-newtown/' },
-      { name: '일산신도시', href: '/gyeonggi/use/ilsan-newtown/' },
-      { name: '운정신도시', href: '/gyeonggi/use/unjeong-newtown/' },
-      { name: '다산신도시', href: '/gyeonggi/use/dasan-newtown/' },
-      { name: '배곧신도시', href: '/gyeonggi/use/baegot-newtown/' },
-      { name: '반월·시화산단', href: '/gyeonggi/use/banwol-sihwa-industrial/' },
-      { name: '광명역세권', href: '/gyeonggi/use/gwangmyeong-station-area/' },
+      { name: '광교신도시', href: '/use/gwanggyo-newtown/' },
+      { name: '판교테크노밸리', href: '/use/pangyo-technovalley/' },
+      { name: '동탄신도시', href: '/use/dongtan-newtown/' },
+      { name: '평택 고덕', href: '/use/pyeongtaek-godeok-newtown/' },
+      { name: '일산신도시', href: '/use/ilsan-newtown/' },
+      { name: '운정신도시', href: '/use/unjeong-newtown/' },
+      { name: '다산신도시', href: '/use/dasan-newtown/' },
+      { name: '배곧신도시', href: '/use/baegot-newtown/' },
+      { name: '반월·시화산단', href: '/use/banwol-sihwa-industrial/' },
+      { name: '광명역세권', href: '/use/gwangmyeong-station-area/' },
     ], true)}
   </div>
 </section>
 <section class="section section--tint">
   <div class="container">
     <div class="section-head"><h2>이용 장소별 확인 기준</h2><p>장소 유형에 따라 예약 전 확인 항목이 다릅니다.</p></div>
-    ${cardGrid(places.map((p) => ({ name: p.name, href: `/gyeonggi/use/${p.slug}/` })), true)}
+    ${cardGrid(places.map((p) => ({ name: p.name, href: `/use/${p.slug}/` })), true)}
   </div>
 </section>
 <section class="section">
@@ -165,21 +167,21 @@ ${pricingHtml()}
     schemas: [
       T.webPageSchema(title, T.d80(desc), pth),
       T.organizationSchema(),
-      T.breadcrumbSchema([['경기도 출장마사지', '/gyeonggi/']]),
+      T.breadcrumbSchema([['경기도 출장마사지', '/']]),
       T.faqSchema(faqs),
     ],
   }, body);
-  write('gyeonggi', html, { priority: 1.0 });
+  write('', html, { priority: 1.0 });
 }
 
 /* ------------------------------------------------------------ 권역 페이지 */
 function buildRegions() {
   for (const r of regions) {
-    const pth = `/gyeonggi/${r.slug}/`;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], [r.name, pth]];
+    const pth = `/${r.slug}/`;
+    const crumbs = [['경기도 출장마사지', '/'], [r.name, pth]];
     const bodySections = r.body.map(([h, p]) => `<h2>${T.esc(h)}</h2><p>${T.esc(p)}</p>`).join('\n');
-    const cityCards = cardGrid(r.cities.map((s) => ({ name: cityBySlug[s].name, href: `/gyeonggi/${s}/` })), true);
-    const areaCards = cardGrid(r.areas.map((s) => ({ name: areaBySlug[s].name, href: `/gyeonggi/area/${s}/`, desc: areaBySlug[s].zones.slice(0, 3).join(' · ') })));
+    const cityCards = cardGrid(r.cities.map((s) => ({ name: cityBySlug[s].name, href: `/${s}/` })), true);
+    const areaCards = cardGrid(r.areas.map((s) => ({ name: areaBySlug[s].name, href: `/area/${s}/`, desc: areaBySlug[s].zones.slice(0, 3).join(' · ') })));
     const faqs = SHARED_FAQ;
     const body = `
 <section class="section">
@@ -204,34 +206,34 @@ function buildRegions() {
       title: r.title, desc: r.desc, path: pth, activePath: pth,
       schemas: [T.webPageSchema(r.title, T.d80(r.desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body);
-    write(`gyeonggi/${r.slug}`, html, { priority: 0.9 });
+    write(`${r.slug}`, html, { priority: 0.9 });
   }
 }
 
 /* ------------------------------------------------------- 8대 생활권 페이지 */
 function buildAreas() {
   // 허브
-  const hubPath = '/gyeonggi/area/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['8대 생활권', hubPath]];
+  const hubPath = '/area/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['8대 생활권', hubPath]];
   const hubBody = `
 <section class="section"><div class="container article">
   ${T.breadcrumbHtml(hubCrumbs)}
   <h1>경기도 8대 생활권 안내</h1>
   <p class="lead">경기도를 실제 이용 흐름에 맞춘 8개 생활권으로 나눠 안내합니다. 도시명보다 머무는 생활권 기준으로 확인하면 예약이 빠르고 정확해집니다.</p>
-  ${cardGrid(areas.map((a) => ({ name: a.name, href: `/gyeonggi/area/${a.slug}/`, desc: a.zones.slice(0, 4).join(' · ') })))}
+  ${cardGrid(areas.map((a) => ({ name: a.name, href: `/area/${a.slug}/`, desc: a.zones.slice(0, 4).join(' · ') })))}
   ${T.policyNoticeHtml()}
 </div></section>`;
-  write('gyeonggi/area', T.layout({
+  write('area', T.layout({
     title: '경기도 8대 생활권 안내｜간다GO', desc: '경기도 8대 생활권별 특징과 출장마사지 이용 기준을 안내합니다.',
     path: hubPath, schemas: [T.webPageSchema('경기도 8대 생활권 안내', '경기도 8대 생활권별 이용 기준 안내', hubPath), T.breadcrumbSchema(hubCrumbs)],
   }, hubBody), { priority: 0.8 });
 
   for (const a of areas) {
-    const pth = `/gyeonggi/area/${a.slug}/`;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['8대 생활권', '/gyeonggi/area/'], [a.name, pth]];
+    const pth = `/area/${a.slug}/`;
+    const crumbs = [['경기도 출장마사지', '/'], ['8대 생활권', '/area/'], [a.name, pth]];
     const zones = a.zones.map((z) => `<li>${T.esc(z)}</li>`).join('');
     const bodySections = a.body.map(([h, p]) => `<h2>${T.esc(h)}</h2><p>${T.esc(p)}</p>`).join('\n');
-    const cityCards = cardGrid(a.cities.filter((s) => cityBySlug[s]).map((s) => ({ name: cityBySlug[s].name, href: `/gyeonggi/${s}/` })), true);
+    const cityCards = cardGrid(a.cities.filter((s) => cityBySlug[s]).map((s) => ({ name: cityBySlug[s].name, href: `/${s}/` })), true);
     const faqs = [
       [`${a.name}은 어떤 기준으로 확인하나요?`, '실제 머무는 생활권(동·단지·숙소)과 건물 유형을 기준으로 확인합니다. 주소를 알려주시면 이동 기준을 바로 안내해 드립니다.'],
       ...SHARED_FAQ,
@@ -253,7 +255,7 @@ function buildAreas() {
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/area/${a.slug}`, T.layout({
+    write(`area/${a.slug}`, T.layout({
       title: a.title, desc: a.desc, path: pth,
       schemas: [T.webPageSchema(a.title, T.d80(a.desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.8 });
@@ -263,14 +265,14 @@ function buildAreas() {
 /* --------------------------------------------------------- 시·군 페이지 */
 function buildCities() {
   // 허브
-  const hubPath = '/gyeonggi/cities/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['31개 시·군 안내', hubPath]];
+  const hubPath = '/cities/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['31개 시·군 안내', hubPath]];
   const grouped = ['south', 'north', 'west', 'east'].map((rs) => {
     const r = regionBySlug[rs];
     const list = cities.filter((c) => c.region === rs);
-    return `<h2>${T.esc(r.name)}</h2>${cardGrid(list.map((c) => ({ name: c.name, href: `/gyeonggi/${c.slug}/` })), true)}`;
+    return `<h2>${T.esc(r.name)}</h2>${cardGrid(list.map((c) => ({ name: c.name, href: `/${c.slug}/` })), true)}`;
   }).join('\n');
-  write('gyeonggi/cities', T.layout({
+  write('cities', T.layout({
     title: '경기도 31개 시·군 출장마사지 안내｜간다GO',
     desc: '경기도 31개 시·군별 생활권과 출장마사지 예약 전 확인사항을 안내합니다.',
     path: hubPath, activePath: hubPath,
@@ -284,10 +286,10 @@ function buildCities() {
 </div></section>`), { priority: 0.8 });
 
   for (const c of cities) {
-    const pth = `/gyeonggi/${c.slug}/`;
+    const pth = `/${c.slug}/`;
     const region = regionBySlug[c.region];
     const area = areaBySlug[c.area];
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], [region.name, `/gyeonggi/${region.slug}/`], [`${c.name} 출장마사지`, pth]];
+    const crumbs = [['경기도 출장마사지', '/'], [region.name, `/${region.slug}/`], [`${c.name} 출장마사지`, pth]];
     const title = `${c.name} 출장마사지 안내｜${c.zones.slice(0, 3).join('·')} 생활권 이용 기준`;
     const desc = `${c.name} 출장마사지 ${c.zones.slice(0, 3).join('·')} 생활권과 숙소·오피스텔 예약 전 확인 안내.`;
     const faqs = [...c.faq, ...SHARED_FAQ];
@@ -296,9 +298,21 @@ function buildCities() {
       : `야간·심야 예약 시에는 공동현관 출입 방법과 주차 위치 확인이 추가로 필요합니다. ${c.name} 도심 생활권은 늦은 시간에도 안내가 가능하니 희망 시간을 알려주세요.`;
     const links = [
       ...c.links,
-      [`${region.name} 전체 생활권 보기`, `/gyeonggi/${region.slug}/`],
-      [`${area.name} 생활권 안내`, `/gyeonggi/area/${area.slug}/`],
+      [`${region.name} 전체 생활권 보기`, `/${region.slug}/`],
+      [`${area.name} 생활권 안내`, `/area/${area.slug}/`],
     ];
+    // 행정구(있는 도시) 또는 행정동·읍·면 버튼 섹션
+    const ad = admin[c.slug];
+    let adminSection = '';
+    if (ad && ad.gus) {
+      adminSection = `<h2>${T.esc(c.name)} 행정구 안내</h2>
+  <p>${T.esc(c.name)}는 ${ad.gus.map((g) => g.name).join('·')} ${ad.gus.length}개 일반구로 나뉩니다. 구를 선택하면 행정동별 방문 안내를 확인할 수 있습니다.</p>
+  ${cardGrid(ad.gus.map((g) => ({ name: g.name, href: `/${c.slug}/${g.slug}/` })), true)}`;
+    } else if (ad && ad.dongs) {
+      adminSection = `<h2>${T.esc(c.name)} 행정동·읍·면 안내</h2>
+  <p>방문하실 행정동·읍·면을 선택하면 해당 지역 방문 안내를 확인할 수 있습니다. 1동·2동처럼 번호로 나뉜 행정동은 생활권이 같아 대표 페이지 하나로 함께 안내합니다.</p>
+  ${cardGrid(ad.dongs.map((d) => ({ name: d, href: `/${c.slug}/${romanize(d)}/` })), true)}`;
+    }
     const body = `
 <section class="section"><div class="container article">
   ${T.breadcrumbHtml(crumbs)}
@@ -308,13 +322,14 @@ function buildCities() {
   <h2>${T.esc(c.name)} 생활권 특징</h2>
   <p>${T.esc(c.living)}</p>
   <p>대표 생활권: ${c.zones.map((z) => T.esc(z)).join(', ')}</p>
+  ${adminSection}
   <h2>가까운 역세권과 이동 기준</h2>
   <p>${T.esc(c.transit)}</p>
   <h2>호텔·숙소 이용 전 확인</h2>
   <p>${T.esc(c.stay)}</p>
-  <p>호텔·모텔·레지던스는 숙소마다 외부인 객실 방문 정책이 다릅니다. 체크인 이후 시간대로 예약하시고, 방문이 어려운 숙소는 인근 대안을 안내해 드립니다. <a href="/gyeonggi/check/hotel-policy/">호텔 정책 확인 안내 보기</a></p>
+  <p>호텔·모텔·레지던스는 숙소마다 외부인 객실 방문 정책이 다릅니다. 체크인 이후 시간대로 예약하시고, 방문이 어려운 숙소는 인근 대안을 안내해 드립니다. <a href="/check/hotel-policy/">호텔 정책 확인 안내 보기</a></p>
   <h2>오피스텔·아파트 이용 전 확인</h2>
-  <p>오피스텔은 공동현관 출입 방식(비밀번호·세대 호출·경비실 경유)을, 아파트 단지는 방문 차량 등록 여부를 예약 전에 확인해 주세요. 도착 시 세대 호출 방식이 가장 일반적이며, 단지명과 동·호수를 알려주시면 방문 절차를 미리 안내해 드립니다. <a href="/gyeonggi/check/building-access/">건물 출입 확인 안내 보기</a></p>
+  <p>오피스텔은 공동현관 출입 방식(비밀번호·세대 호출·경비실 경유)을, 아파트 단지는 방문 차량 등록 여부를 예약 전에 확인해 주세요. 도착 시 세대 호출 방식이 가장 일반적이며, 단지명과 동·호수를 알려주시면 방문 절차를 미리 안내해 드립니다. <a href="/check/building-access/">건물 출입 확인 안내 보기</a></p>
   <h2>산업단지·신도시·외곽 이동 기준</h2>
   <p>${T.esc(c.extra)}</p>
   <h2>야간 예약 전 확인</h2>
@@ -325,18 +340,113 @@ function buildCities() {
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/${c.slug}`, T.layout({
+    write(`${c.slug}`, T.layout({
       title, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: c.tier === 1 ? 0.9 : 0.7 });
   }
 }
 
+/* ------------------------------------------------ 행정구·행정동 페이지 */
+function dongPage(c, gu, dongName) {
+  const dslug = romanize(dongName);
+  const rel = gu ? `${c.slug}/${gu.slug}/${dslug}` : `${c.slug}/${dslug}`;
+  const pth = `/${rel}/`;
+  const isEupMyeon = /[읍면]$/.test(dongName);
+  const unitLabel = isEupMyeon ? '읍·면' : '행정동';
+  const crumbs = [
+    ['경기도 출장마사지', '/'],
+    [c.name, `/${c.slug}/`],
+    ...(gu ? [[gu.name, `/${c.slug}/${gu.slug}/`]] : []),
+    [dongName, pth],
+  ];
+  const title = `${c.name} ${dongName} 출장마사지 방문 안내`;
+  const desc = `${c.name}${gu ? ' ' + gu.name : ''} ${dongName} 방문 관리 예약 전 확인 안내.`;
+  const dedupNote = isEupMyeon
+    ? `${dongName}은 ${c.name}의 ${unitLabel} 지역으로, 리 단위 세부 주소까지 알려주시면 진입로와 이동 기준을 함께 확인해 드립니다.`
+    : `1동·2동처럼 번호로 나뉜 세부 행정동은 생활권이 같아 이 대표 페이지에서 함께 안내합니다. 검색 노출 목적의 중복 페이지는 만들지 않습니다.`;
+  const body = `
+<section class="section"><div class="container article">
+  ${T.breadcrumbHtml(crumbs)}
+  <h1>${T.esc(c.name)} ${T.esc(dongName)} 출장마사지 방문 안내</h1>
+  <p class="lead">${T.esc(dongName)}은(는) ${T.esc(c.name)}${gu ? ' ' + T.esc(gu.name) : ''}의 ${unitLabel}입니다. 방문 관리는 도로명 주소와 동·호수(또는 숙소명) 기준으로 안내되며, 정확한 주소를 알려주시면 방문 가능 여부와 절차를 바로 확인해 드립니다.</p>
+  ${T.ctaHtml()}
+  <h2>이 지역 안내 기준</h2>
+  <p>${T.esc(dedupNote)}</p>
+  <p>${T.esc(c.name)} 전체 생활권 특징과 숙소·오피스텔·아파트 이용 기준은 <a href="/${c.slug}/">${T.esc(c.name)} 안내 페이지</a>에서 확인할 수 있습니다. 건물 출입 방식(공동현관·경비실·프런트)과 주차 여부를 예약 전에 함께 확인해 주세요.</p>
+  ${T.checklistHtml()}
+  ${T.linkListHtml([
+    [`${c.name} 전체 안내`, `/${c.slug}/`],
+    ...(gu ? [[`${gu.name} 행정동 안내`, `/${c.slug}/${gu.slug}/`]] : []),
+    ['이용 장소별 확인 기준', '/use/'],
+    ['예약 전 확인사항', '/check/'],
+  ], '관련 안내 보기')}
+  ${T.policyNoticeHtml()}
+</div></section>`;
+  write(rel, T.layout({
+    title, desc, path: pth, noindex: true,
+    schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs)],
+  }, body), { noindex: true });
+}
+
+function buildAdmin() {
+  for (const c of cities) {
+    const ad = admin[c.slug];
+    if (!ad) continue;
+    if (ad.gus) {
+      for (const gu of ad.gus) {
+        const pth = `/${c.slug}/${gu.slug}/`;
+        const crumbs = [['경기도 출장마사지', '/'], [c.name, `/${c.slug}/`], [gu.name, pth]];
+        const title = `${c.name} ${gu.name} 출장마사지 안내｜행정동별 방문 기준`;
+        const desc = `${c.name} ${gu.name} 행정동별 출장마사지 방문 안내와 예약 전 확인.`;
+        const faqs = [
+          [`${gu.name} 안에서는 어느 동이든 방문 가능한가요?`, `${gu.name} 전 행정동이 안내 대상입니다. 정확한 주소를 알려주시면 건물 출입 방식과 이동 기준을 예약 전에 확인해 드립니다.`],
+          ...SHARED_FAQ,
+        ];
+        const region = regionBySlug[c.region];
+        const body = `
+<section class="section"><div class="container article">
+  ${T.breadcrumbHtml(crumbs)}
+  <h1>${T.esc(c.name)} ${T.esc(gu.name)} 출장마사지 · 행정동별 방문 안내</h1>
+  <p class="lead">${T.esc(gu.note)}</p>
+  ${T.ctaHtml()}
+  <h2>${T.esc(gu.name)} 행정동 안내</h2>
+  <p>방문하실 행정동을 선택해 주세요. 1동·2동처럼 번호로 나뉜 행정동은 생활권이 같아 대표 페이지 하나로 함께 안내합니다.</p>
+  ${cardGrid(gu.dongs.map((d) => ({ name: d, href: `/${c.slug}/${gu.slug}/${romanize(d)}/` })), true)}
+  <h2>아파트·오피스텔 이용 전 확인</h2>
+  <p>오피스텔은 공동현관 출입 방식(비밀번호·세대 호출·경비실 경유)을, 아파트 단지는 방문 차량 등록 여부를 예약 전에 확인해 주세요. 단지명과 동·호수를 알려주시면 방문 절차를 미리 안내해 드립니다.</p>
+  <h2>숙소 이용 전 확인</h2>
+  <p>호텔·모텔·레지던스는 숙소마다 외부인 객실 방문 정책이 다릅니다. 숙소명을 알려주시면 방문 가능 여부를 예약 전에 확인해 드리며, 방문이 어려운 숙소는 인근 대안을 안내해 드립니다.</p>
+  ${T.bookingFlowHtml()}
+  ${T.pricingNoteHtml()}
+  ${T.checklistHtml()}
+  ${T.faqHtml(faqs)}
+  ${T.linkListHtml([
+    [`${c.name} 전체 안내`, `/${c.slug}/`],
+    [`${region.name} 생활권 보기`, `/${region.slug}/`],
+    ['이용 장소별 확인 기준', '/use/'],
+    ['예약 전 확인사항', '/check/'],
+  ], '관련 지역 보기')}
+  ${T.policyNoticeHtml()}
+  ${T.whwHtml()}
+</div></section>`;
+        write(`${c.slug}/${gu.slug}`, T.layout({
+          title, desc, path: pth,
+          schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
+        }, body), { priority: 0.6 });
+        for (const d of gu.dongs) dongPage(c, gu, d);
+      }
+    } else if (ad.dongs) {
+      for (const d of ad.dongs) dongPage(c, null, d);
+    }
+  }
+}
+
 /* --------------------------------------------------------- 생활권 페이지 */
 function buildLife() {
-  const hubPath = '/gyeonggi/life/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['핵심 생활권', hubPath]];
-  write('gyeonggi/life', T.layout({
+  const hubPath = '/life/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['핵심 생활권', hubPath]];
+  write('life', T.layout({
     title: '경기도 핵심 생활권 안내｜간다GO',
     desc: '광교·판교·동탄·일산 등 경기도 핵심 생활권별 이용 기준을 안내합니다.',
     path: hubPath, activePath: hubPath,
@@ -345,15 +455,15 @@ function buildLife() {
   ${T.breadcrumbHtml(hubCrumbs)}
   <h1>경기도 핵심 생활권 안내</h1>
   <p class="lead">실제 예약 문의가 많은 핵심 생활권을 모았습니다. 도시명보다 생활권 기준으로 확인하면 이동 기준과 건물 출입 방식을 더 정확하게 안내받을 수 있습니다.</p>
-  ${cardGrid(life.map((l) => ({ name: l.name, href: `/gyeonggi/life/${l.slug}/` })), true)}
+  ${cardGrid(life.map((l) => ({ name: l.name, href: `/life/${l.slug}/` })), true)}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
   for (const l of life) {
-    const pth = `/gyeonggi/life/${l.slug}/`;
+    const pth = `/life/${l.slug}/`;
     const city = cityBySlug[l.city];
     const region = regionBySlug[l.region];
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['핵심 생활권', '/gyeonggi/life/'], [`${l.name} 생활권`, pth]];
+    const crumbs = [['경기도 출장마사지', '/'], ['핵심 생활권', '/life/'], [`${l.name} 생활권`, pth]];
     const title = `${l.name} 출장마사지 안내｜생활권 이용 기준과 예약 전 확인`;
     const desc = `${l.name} 생활권 출장마사지 이용 기준과 숙소·오피스텔 예약 전 확인 안내.`;
     const faqs = [
@@ -362,7 +472,7 @@ function buildLife() {
     ];
     const links = [
       ...l.links,
-      [`${region.name} 전체 안내`, `/gyeonggi/${region.slug}/`],
+      [`${region.name} 전체 안내`, `/${region.slug}/`],
     ];
     const body = `
 <section class="section"><div class="container article">
@@ -384,7 +494,7 @@ function buildLife() {
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/life/${l.slug}`, T.layout({
+    write(`life/${l.slug}`, T.layout({
       title, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.7 });
@@ -393,9 +503,9 @@ function buildLife() {
 
 /* --------------------------------------------------------- 역세권 페이지 */
 function buildStations() {
-  const hubPath = '/gyeonggi/station/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['역세권·터미널', hubPath]];
-  write('gyeonggi/station', T.layout({
+  const hubPath = '/station/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['역세권·터미널', hubPath]];
+  write('station', T.layout({
     title: '경기도 역세권·KTX·SRT·터미널 이용 안내｜간다GO',
     desc: '경기도 주요 역세권·KTX·SRT 인접 숙소의 출장마사지 이용 기준 안내.',
     path: hubPath, activePath: hubPath,
@@ -404,15 +514,15 @@ function buildStations() {
   ${T.breadcrumbHtml(hubCrumbs)}
   <h1>경기도 역세권·KTX·SRT·터미널 안내</h1>
   <p class="lead">출장·여행 고객 문의가 많은 주요 역 인접 숙소권을 안내합니다. 출구별·노선별 구분 없이 역 생활권 기준으로 확인해 드립니다.</p>
-  ${cardGrid(stations.map((s) => ({ name: s.name, href: `/gyeonggi/station/${s.slug}/` })), true)}
+  ${cardGrid(stations.map((s) => ({ name: s.name, href: `/station/${s.slug}/` })), true)}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.7 });
 
   for (const s of stations) {
-    const pth = `/gyeonggi/station/${s.slug}/`;
+    const pth = `/station/${s.slug}/`;
     const city = cityBySlug[s.city];
     const lf = s.life ? lifeBySlug[s.life] : null;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['역세권·터미널', '/gyeonggi/station/'], [`${s.name} 인접 숙소`, pth]];
+    const crumbs = [['경기도 출장마사지', '/'], ['역세권·터미널', '/station/'], [`${s.name} 인접 숙소`, pth]];
     const title = `${s.name} 인접 숙소 출장마사지 안내｜예약 전 확인`;
     const desc = `${s.name} 인접 숙소·오피스텔 출장마사지 이용 기준과 예약 전 확인 안내.`;
     const faqs = [
@@ -420,10 +530,10 @@ function buildStations() {
       ...SHARED_FAQ,
     ];
     const links = [
-      city ? [`${city.name} 전체 안내`, `/gyeonggi/${city.slug}/`] : null,
-      lf ? [`${lf.name} 생활권 이용 기준`, `/gyeonggi/life/${lf.slug}/`] : null,
-      ['KTX·SRT·터미널 이용 안내', '/gyeonggi/use/station-terminal/'],
-      ['호텔 정책 확인 안내', '/gyeonggi/check/hotel-policy/'],
+      city ? [`${city.name} 전체 안내`, `/${city.slug}/`] : null,
+      lf ? [`${lf.name} 생활권 이용 기준`, `/life/${lf.slug}/`] : null,
+      ['KTX·SRT·터미널 이용 안내', '/use/station-terminal/'],
+      ['호텔 정책 확인 안내', '/check/hotel-policy/'],
     ].filter(Boolean);
     const body = `
 <section class="section"><div class="container article">
@@ -445,7 +555,7 @@ function buildStations() {
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/station/${s.slug}`, T.layout({
+    write(`station/${s.slug}`, T.layout({
       title, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.6 });
@@ -454,9 +564,9 @@ function buildStations() {
 
 /* ---------------------------------------------- 이용 장소 + 신도시·산단 */
 function buildUse() {
-  const hubPath = '/gyeonggi/use/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['이용 장소', hubPath]];
-  write('gyeonggi/use', T.layout({
+  const hubPath = '/use/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['이용 장소', hubPath]];
+  write('use', T.layout({
     title: '경기도 이용 장소별 확인 기준｜간다GO',
     desc: '자택·호텔·오피스텔·산업단지 등 이용 장소별 예약 전 확인 기준 안내.',
     path: hubPath, activePath: hubPath,
@@ -466,18 +576,18 @@ function buildUse() {
   <h1>이용 장소별 확인 기준</h1>
   <p class="lead">같은 지역이라도 자택·호텔·오피스텔·산업단지 숙소는 예약 전 확인 항목이 다릅니다. 이용하실 장소 유형을 먼저 확인해 보세요.</p>
   <h2>장소 유형별 안내</h2>
-  ${cardGrid(places.map((p) => ({ name: p.name, href: `/gyeonggi/use/${p.slug}/` })), true)}
+  ${cardGrid(places.map((p) => ({ name: p.name, href: `/use/${p.slug}/` })), true)}
   <h2>신도시 이용 기준</h2>
-  ${cardGrid(newtowns.filter((n) => n.type === 'newtown').map((n) => ({ name: n.name, href: `/gyeonggi/use/${n.slug}/` })), true)}
+  ${cardGrid(newtowns.filter((n) => n.type === 'newtown').map((n) => ({ name: n.name, href: `/use/${n.slug}/` })), true)}
   <h2>산업단지 이용 기준</h2>
-  ${cardGrid(newtowns.filter((n) => n.type === 'industrial').map((n) => ({ name: n.name, href: `/gyeonggi/use/${n.slug}/` })), true)}
+  ${cardGrid(newtowns.filter((n) => n.type === 'industrial').map((n) => ({ name: n.name, href: `/use/${n.slug}/` })), true)}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
   // 이용 장소 12
   for (const p of places) {
-    const pth = `/gyeonggi/use/${p.slug}/`;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['이용 장소', '/gyeonggi/use/'], [p.name, pth]];
+    const pth = `/use/${p.slug}/`;
+    const crumbs = [['경기도 출장마사지', '/'], ['이용 장소', '/use/'], [p.name, pth]];
     const title = `${p.h1}｜간다GO`;
     const desc = `${p.name} 이용 시 예약 전 확인사항과 이용 기준을 안내합니다.`;
     const faqs = [...p.faq, ...SHARED_FAQ];
@@ -495,14 +605,14 @@ function buildUse() {
   ${T.pricingNoteHtml()}
   ${T.faqHtml(faqs)}
   ${T.linkListHtml([
-    ['예약 전 확인사항 전체 보기', '/gyeonggi/check/'],
-    ['이용 코스·요금 안내', '/gyeonggi/#pricing'],
-    ['마사지 프로그램 안내', '/gyeonggi/program/'],
+    ['예약 전 확인사항 전체 보기', '/check/'],
+    ['이용 코스·요금 안내', '/#pricing'],
+    ['마사지 프로그램 안내', '/program/'],
   ], '함께 확인하면 좋은 안내')}
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/use/${p.slug}`, T.layout({
+    write(`use/${p.slug}`, T.layout({
       title, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.7 });
@@ -510,10 +620,10 @@ function buildUse() {
 
   // 신도시·산업단지 22
   for (const n of newtowns) {
-    const pth = `/gyeonggi/use/${n.slug}/`;
+    const pth = `/use/${n.slug}/`;
     const city = cityBySlug[n.city];
     const lf = n.life ? lifeBySlug[n.life] : null;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['이용 장소', '/gyeonggi/use/'], [n.name, pth]];
+    const crumbs = [['경기도 출장마사지', '/'], ['이용 장소', '/use/'], [n.name, pth]];
     const isInd = n.type === 'industrial';
     const title = `${n.name} ${isInd ? '인접 숙소' : '생활권'} 출장마사지 이용 기준`;
     const desc = `${n.name} ${isInd ? '인접 숙소와 출장 숙소' : '아파트·오피스텔'} 이용 전 확인사항 안내.`;
@@ -533,10 +643,10 @@ function buildUse() {
   <h2>예약 가능 시간 안내</h2>
   <p>신도시 생활권은 저녁~밤 시간대 문의가 많습니다. 심야 예약은 공동현관 출입 가능 여부에 따라 달라지므로 희망 시간을 알려주시면 확인해 드립니다.</p>`;
     const links = [
-      city ? [`${city.name} 전체 안내`, `/gyeonggi/${city.slug}/`] : null,
-      lf ? [`${lf.name} 생활권 이용 기준`, `/gyeonggi/life/${lf.slug}/`] : null,
-      isInd ? ['장기 출장 숙소 이용 안내', '/gyeonggi/use/business-trip-accommodation/'] : ['신도시 생활권 예약 전 확인', '/gyeonggi/use/newtown/'],
-      isInd ? ['산업단지 인접 숙소 확인', '/gyeonggi/check/industrial-area/'] : ['신도시 아파트 확인 안내', '/gyeonggi/check/newtown-apartment/'],
+      city ? [`${city.name} 전체 안내`, `/${city.slug}/`] : null,
+      lf ? [`${lf.name} 생활권 이용 기준`, `/life/${lf.slug}/`] : null,
+      isInd ? ['장기 출장 숙소 이용 안내', '/use/business-trip-accommodation/'] : ['신도시 생활권 예약 전 확인', '/use/newtown/'],
+      isInd ? ['산업단지 인접 숙소 확인', '/check/industrial-area/'] : ['신도시 아파트 확인 안내', '/check/newtown-apartment/'],
     ].filter(Boolean);
     const body = `
 <section class="section"><div class="container article">
@@ -555,7 +665,7 @@ function buildUse() {
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/use/${n.slug}`, T.layout({
+    write(`use/${n.slug}`, T.layout({
       title, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.6 });
@@ -564,9 +674,9 @@ function buildUse() {
 
 /* ------------------------------------------------------ 예약 전 확인 */
 function buildChecks() {
-  const hubPath = '/gyeonggi/check/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['예약 전 확인', hubPath]];
-  write('gyeonggi/check', T.layout({
+  const hubPath = '/check/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['예약 전 확인', hubPath]];
+  write('check', T.layout({
     title: '예약 전 확인사항 안내｜간다GO',
     desc: '방문 주소·건물 출입·호텔 정책·예약 시간 등 예약 전 확인사항 안내.',
     path: hubPath, activePath: hubPath,
@@ -575,13 +685,13 @@ function buildChecks() {
   ${T.breadcrumbHtml(hubCrumbs)}
   <h1>예약 전 확인사항 안내</h1>
   <p class="lead">예약 전에 아래 항목만 확인해 주시면 어느 지역이든 대기 없이 정확하게 안내됩니다. 항목별 자세한 기준은 각 페이지에서 확인하세요.</p>
-  ${cardGrid(checks.map((c) => ({ name: c.name, href: `/gyeonggi/check/${c.slug}/` })), true)}
+  ${cardGrid(checks.map((c) => ({ name: c.name, href: `/check/${c.slug}/` })), true)}
   ${T.policyNoticeHtml()}
 </div></section>`), { priority: 0.8 });
 
   for (const c of checks) {
-    const pth = `/gyeonggi/check/${c.slug}/`;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['예약 전 확인', '/gyeonggi/check/'], [c.name, pth]];
+    const pth = `/check/${c.slug}/`;
+    const crumbs = [['경기도 출장마사지', '/'], ['예약 전 확인', '/check/'], [c.name, pth]];
     const title = `${c.h1}｜간다GO`;
     const desc = `${c.name} — 경기도 출장마사지 예약 전 확인 기준 안내.`;
     const body = `
@@ -594,14 +704,14 @@ function buildChecks() {
   <ul class="checklist">${c.points.map((x) => `<li>${T.esc(x)}</li>`).join('')}</ul>
   ${T.bookingFlowHtml()}
   ${T.linkListHtml([
-    ['예약 전 확인사항 전체 보기', '/gyeonggi/check/'],
-    ['이용 장소별 확인 기준', '/gyeonggi/use/'],
-    ['개인정보 처리방침', '/gyeonggi/policy/privacy/'],
-    ['불법·선정적 서비스 불가 안내', '/gyeonggi/policy/no-illegal/'],
+    ['예약 전 확인사항 전체 보기', '/check/'],
+    ['이용 장소별 확인 기준', '/use/'],
+    ['개인정보 처리방침', '/policy/privacy/'],
+    ['불법·선정적 서비스 불가 안내', '/policy/no-illegal/'],
   ], '함께 확인하면 좋은 안내')}
   ${T.policyNoticeHtml()}
 </div></section>`;
-    write(`gyeonggi/check/${c.slug}`, T.layout({
+    write(`check/${c.slug}`, T.layout({
       title, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs)],
     }, body), { priority: 0.6 });
@@ -610,13 +720,13 @@ function buildChecks() {
 
 /* -------------------------------------------------------- 프로그램 */
 function buildPrograms() {
-  const hubPath = '/gyeonggi/program/';
-  const hubCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['마사지 프로그램', hubPath]];
+  const hubPath = '/program/';
+  const hubCrumbs = [['경기도 출장마사지', '/'], ['마사지 프로그램', hubPath]];
   const hubFaqs = [
     ['어떤 프로그램을 선택해야 할지 모르겠어요.', '컨디션과 선호(부드러운 이완·강한 압·스트레칭)를 알려주시면 상담 시 맞는 프로그램을 안내해 드립니다.'],
     ...SHARED_FAQ,
   ];
-  write('gyeonggi/program', T.layout({
+  write('program', T.layout({
     title: '마사지 프로그램 안내｜스웨디시·아로마·타이·스포츠 관리 기준',
     desc: '스웨디시·아로마·타이·스포츠·발마사지 등 프로그램별 특징과 확인사항 안내.',
     path: hubPath, activePath: hubPath,
@@ -627,7 +737,7 @@ function buildPrograms() {
   <p class="lead">프로그램명을 나열하는 페이지가 아니라, 어떤 관리가 본인에게 맞는지, 어떤 장소에서 이용 가능한지, 예약 전 무엇을 확인해야 하는지 안내하는 페이지입니다. 모든 프로그램은 60·90·120분 코스 기준으로 제공됩니다.</p>
   ${T.ctaHtml()}
   <h2>프로그램별 안내</h2>
-  ${cardGrid(programs.map((p) => ({ name: p.name, href: `/gyeonggi/program/${p.slug}/`, desc: p.intro.slice(0, 46) + '…' })))}
+  ${cardGrid(programs.map((p) => ({ name: p.name, href: `/program/${p.slug}/`, desc: p.intro.slice(0, 46) + '…' })))}
   <h2>프로그램 선택 기준</h2>
   <ul>
     <li>부드러운 이완이 필요하면 — 스웨디시, 아로마테라피, 로미로미</li>
@@ -642,8 +752,8 @@ function buildPrograms() {
 </div></section>`), { priority: 0.8 });
 
   for (const p of programs) {
-    const pth = `/gyeonggi/program/${p.slug}/`;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], ['마사지 프로그램', '/gyeonggi/program/'], [p.name, pth]];
+    const pth = `/program/${p.slug}/`;
+    const crumbs = [['경기도 출장마사지', '/'], ['마사지 프로그램', '/program/'], [p.name, pth]];
     const faqs = [...p.faq, ...SHARED_FAQ];
     const body = `
 <section class="section"><div class="container article">
@@ -656,7 +766,7 @@ function buildPrograms() {
   <h2>진행 방식과 압 조절</h2>
   <p>${T.esc(p.how)}</p>
   <h2>이용 장소별 확인</h2>
-  <p>자택·아파트는 공동현관 출입 방식을, 호텔·숙소는 객실 방문 가능 여부를, 오피스텔은 관리 규정과 방문 가능 시간대를 예약 전에 확인해 주세요. 장소 유형별 자세한 기준은 <a href="/gyeonggi/use/">이용 장소 안내</a>에서 확인할 수 있습니다.</p>
+  <p>자택·아파트는 공동현관 출입 방식을, 호텔·숙소는 객실 방문 가능 여부를, 오피스텔은 관리 규정과 방문 가능 시간대를 예약 전에 확인해 주세요. 장소 유형별 자세한 기준은 <a href="/use/">이용 장소 안내</a>에서 확인할 수 있습니다.</p>
   <h2>예약 전 확인 항목</h2>
   <ul class="checklist">${p.checks.map((x) => `<li>${T.esc(x)}</li>`).join('')}</ul>
   <h2>코스 시간 선택 안내</h2>
@@ -668,7 +778,7 @@ function buildPrograms() {
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
 </div></section>`;
-    write(`gyeonggi/program/${p.slug}`, T.layout({
+    write(`program/${p.slug}`, T.layout({
       title: p.title, desc: p.desc, path: pth,
       schemas: [T.webPageSchema(p.title, T.d80(p.desc), pth), T.breadcrumbSchema(crumbs), T.faqSchema(faqs)],
     }, body), { priority: 0.7 });
@@ -678,9 +788,9 @@ function buildPrograms() {
 /* ------------------------------------------------------ 정책·문의 */
 function buildPolicyAndContact() {
   const mk = (slug, title, desc, h1, inner, priority = 0.4) => {
-    const pth = `/gyeonggi/${slug}/`;
-    const crumbs = [['경기도 출장마사지', '/gyeonggi/'], [h1, pth]];
-    write(`gyeonggi/${slug}`, T.layout({
+    const pth = `/${slug}/`;
+    const crumbs = [['경기도 출장마사지', '/'], [h1, pth]];
+    write(`${slug}`, T.layout({
       title: `${title}｜간다GO`, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs)],
     }, `<section class="section"><div class="container article">
@@ -701,7 +811,7 @@ function buildPolicyAndContact() {
   <h2>4. 이용자의 권리</h2>
   <p>이용자는 언제든지 본인 정보의 삭제를 요청할 수 있습니다. 전화(${site.phone}) 또는 문의하기를 통해 요청해 주세요.</p>
   <h2>5. 문의처</h2>
-  <p>개인정보 처리에 대한 문의: 전화예약 ${site.phone} / <a href="/gyeonggi/contact/">문의하기</a></p>`);
+  <p>개인정보 처리에 대한 문의: 전화예약 ${site.phone} / <a href="/contact/">문의하기</a></p>`);
 
   mk('policy/no-illegal', '불법·선정적 서비스 불가 안내', '간다GO는 건전한 방문형 관리만 운영하며 불법·선정적 서비스를 제공하지 않습니다.', '불법·선정적 서비스 불가 안내', `
   <p class="lead">간다GO는 건전한 방문형 웰니스 관리 서비스만 운영합니다. 아래 기준은 모든 지역, 모든 프로그램, 모든 예약에 예외 없이 적용됩니다.</p>
@@ -723,7 +833,7 @@ function buildPolicyAndContact() {
   <h2>진행 기준</h2>
   <p>예약 확정 시 안내된 코스와 시간 기준으로 진행되며, 관리사가 필요 장비를 준비해 방문합니다. 압 조절과 집중 부위 요청은 관리 중 언제든 가능합니다.</p>
   <h2>변경·취소 기준</h2>
-  <p>관리사 이동 시작 전 변경·취소는 부담이 없습니다. 이동 중·도착 후 취소는 협의가 필요하며, 무단 노쇼는 이후 예약이 제한될 수 있습니다. <a href="/gyeonggi/check/change-policy/">변경·취소 기준 자세히 보기</a></p>
+  <p>관리사 이동 시작 전 변경·취소는 부담이 없습니다. 이동 중·도착 후 취소는 협의가 필요하며, 무단 노쇼는 이후 예약이 제한될 수 있습니다. <a href="/check/change-policy/">변경·취소 기준 자세히 보기</a></p>
   <h2>중단 기준</h2>
   <p>불법·선정적 요구, 관리사에 대한 부적절한 행동, 심한 음주 상태 등의 경우 진행이 중단될 수 있습니다.</p>`);
 
@@ -736,12 +846,12 @@ function buildPolicyAndContact() {
   <h2>검수 기준</h2>
   <p>모든 페이지는 게시 전 다음 기준으로 검수됩니다: 실제 서비스와 일치하는지, 불법·선정적 표현이 없는지, 지역 정보가 정확한지, 이용자에게 실질적으로 필요한 정보인지.</p>
   <h2>수정 요청</h2>
-  <p>잘못된 지역 정보나 오래된 내용을 발견하시면 <a href="/gyeonggi/contact/">문의하기</a>로 알려주세요. 확인 후 신속히 수정합니다.</p>`);
+  <p>잘못된 지역 정보나 오래된 내용을 발견하시면 <a href="/contact/">문의하기</a>로 알려주세요. 확인 후 신속히 수정합니다.</p>`);
 
   // 문의하기
-  const contactPath = '/gyeonggi/contact/';
-  const contactCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['문의하기', contactPath]];
-  write('gyeonggi/contact', T.layout({
+  const contactPath = '/contact/';
+  const contactCrumbs = [['경기도 출장마사지', '/'], ['문의하기', contactPath]];
+  write('contact', T.layout({
     title: '문의하기｜간다GO 전화예약 및 제휴 문의',
     desc: '간다GO 전화예약(0508-202-4719)과 웹사이트 제작·제휴 문의 안내.',
     path: contactPath, activePath: contactPath,
@@ -774,40 +884,34 @@ function buildPolicyAndContact() {
 /* --------------------------------------------------- 사이트맵·기타 */
 function buildMisc() {
   // HTML 사이트맵
-  const smPath = '/gyeonggi/sitemap/';
-  const smCrumbs = [['경기도 출장마사지', '/gyeonggi/'], ['사이트맵', smPath]];
+  const smPath = '/sitemap/';
+  const smCrumbs = [['경기도 출장마사지', '/'], ['사이트맵', smPath]];
   const group = (title, items) =>
     `<h2>${title}</h2><ul class="link-list">${items.map(([n, h]) => `<li><a href="${h}">${T.esc(n)}</a></li>`).join('')}</ul>`;
-  write('gyeonggi/sitemap', T.layout({
+  write('sitemap', T.layout({
     title: '사이트맵｜간다GO', desc: '간다GO 전체 페이지 목록 — 지역·생활권·프로그램·정책 안내.',
     path: smPath,
     schemas: [T.webPageSchema('사이트맵', '간다GO 전체 페이지 목록', smPath), T.breadcrumbSchema(smCrumbs)],
   }, `<section class="section"><div class="container article">
   ${T.breadcrumbHtml(smCrumbs)}
   <h1>사이트맵</h1>
-  ${group('메인·권역', [['경기도 홈', '/gyeonggi/'], ...regions.map((r) => [r.name, `/gyeonggi/${r.slug}/`])])}
-  ${group('8대 생활권', areas.map((a) => [a.name, `/gyeonggi/area/${a.slug}/`]))}
-  ${group('31개 시·군', cities.map((c) => [c.name, `/gyeonggi/${c.slug}/`]))}
-  ${group('핵심 생활권', life.map((l) => [l.name, `/gyeonggi/life/${l.slug}/`]))}
-  ${group('역세권·터미널', stations.map((s) => [s.name, `/gyeonggi/station/${s.slug}/`]))}
-  ${group('이용 장소', places.map((p) => [p.name, `/gyeonggi/use/${p.slug}/`]))}
-  ${group('신도시·산업단지', newtowns.map((n) => [n.name, `/gyeonggi/use/${n.slug}/`]))}
-  ${group('마사지 프로그램', programs.map((p) => [p.name, `/gyeonggi/program/${p.slug}/`]))}
-  ${group('예약 전 확인', checks.map((c) => [c.name, `/gyeonggi/check/${c.slug}/`]))}
-  ${group('정책·문의', [['운영 기준', '/gyeonggi/policy/operation/'], ['개인정보 처리방침', '/gyeonggi/policy/privacy/'], ['불법·선정적 서비스 불가 안내', '/gyeonggi/policy/no-illegal/'], ['작성자·검수자 안내', '/gyeonggi/policy/author/'], ['문의하기', '/gyeonggi/contact/']])}
+  ${group('메인·권역', [['경기도 홈', '/'], ...regions.map((r) => [r.name, `/${r.slug}/`])])}
+  ${group('8대 생활권', areas.map((a) => [a.name, `/area/${a.slug}/`]))}
+  ${group('31개 시·군', cities.map((c) => [c.name, `/${c.slug}/`]))}
+  ${group('핵심 생활권', life.map((l) => [l.name, `/life/${l.slug}/`]))}
+  ${group('역세권·터미널', stations.map((s) => [s.name, `/station/${s.slug}/`]))}
+  ${group('이용 장소', places.map((p) => [p.name, `/use/${p.slug}/`]))}
+  ${group('신도시·산업단지', newtowns.map((n) => [n.name, `/use/${n.slug}/`]))}
+  ${group('마사지 프로그램', programs.map((p) => [p.name, `/program/${p.slug}/`]))}
+  ${group('예약 전 확인', checks.map((c) => [c.name, `/check/${c.slug}/`]))}
+  ${group('정책·문의', [['운영 기준', '/policy/operation/'], ['개인정보 처리방침', '/policy/privacy/'], ['불법·선정적 서비스 불가 안내', '/policy/no-illegal/'], ['작성자·검수자 안내', '/policy/author/'], ['문의하기', '/contact/']])}
 </div></section>`), { priority: 0.3 });
 
-  // 루트 리다이렉트
-  fs.writeFileSync(path.join(OUT, 'index.html'), `<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<title>간다GO — 경기도 출장마사지 안내</title>
-<link rel="canonical" href="${site.siteUrl}/gyeonggi/">
-<meta http-equiv="refresh" content="0; url=/gyeonggi/">
-</head>
-<body><p><a href="/gyeonggi/">경기도 출장마사지 안내로 이동</a></p></body>
-</html>`);
+  // 구 URL(/gyeonggi/...) → 새 URL 301 리다이렉트 (Cloudflare Pages _redirects)
+  fs.writeFileSync(path.join(OUT, '_redirects'), `/gyeonggi / 301
+/gyeonggi/ / 301
+/gyeonggi/* /:splat 301
+`);
 
   // 404
   fs.writeFileSync(path.join(OUT, '404.html'), T.layout({
@@ -818,9 +922,9 @@ function buildMisc() {
   <h1>페이지를 찾을 수 없습니다</h1>
   <p class="lead">주소가 변경되었거나 삭제된 페이지입니다. 아래에서 원하시는 안내를 찾아보세요.</p>
   <div class="hero__cta">
-    <a class="btn btn--accent" href="/gyeonggi/">경기도 홈으로</a>
-    <a class="btn btn--ghost" href="/gyeonggi/cities/">도시별 안내</a>
-    <a class="btn btn--ghost" href="/gyeonggi/sitemap/">사이트맵</a>
+    <a class="btn btn--accent" href="/">경기도 홈으로</a>
+    <a class="btn btn--ghost" href="/cities/">도시별 안내</a>
+    <a class="btn btn--ghost" href="/sitemap/">사이트맵</a>
   </div>
 </div></section>`));
 
@@ -870,6 +974,7 @@ buildMain();
 buildRegions();
 buildAreas();
 buildCities();
+buildAdmin();
 buildLife();
 buildStations();
 buildUse();
