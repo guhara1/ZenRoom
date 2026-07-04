@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
 
 Sitemap: https://zenroom.pages.dev/sitemap.xml
+Sitemap: https://zenroom.pages.dev/rss.xml

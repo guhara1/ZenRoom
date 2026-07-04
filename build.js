@@ -29,7 +29,10 @@ function write(relPath, html, { priority = 0.6, noindex = false } = {}) {
   const dir = path.join(OUT, relPath);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
-  pages.push({ path: relPath.replace(/\/?$/, '/').replace(/^\/?/, '/'), priority, noindex });
+  // sitemap/RSS용 title·desc를 HTML에서 추출
+  const title = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
+  const desc = (html.match(/name="description" content="([^"]*)"/) || [])[1] || '';
+  pages.push({ path: relPath.replace(/\/?$/, '/').replace(/^\/?/, '/'), priority, noindex, title, desc });
 }
 
 const regionBySlug = Object.fromEntries(regions.map((r) => [r.slug, r]));
@@ -952,16 +955,39 @@ function buildMisc() {
   </div>
 </div></section>`));
 
-  // robots.txt
+  // 빌드 시각 (sitemap lastmod / RSS pubDate)
+  const BUILD = new Date();
+  const lastmod = BUILD.toISOString().slice(0, 10); // YYYY-MM-DD
+  const pubDate = BUILD.toUTCString();
+  const changefreq = (pr) => (pr >= 0.9 ? 'daily' : pr >= 0.7 ? 'weekly' : 'monthly');
+
+  // robots.txt — 네이버(Yeti)·구글·빙 명시 허용 + 사이트맵·RSS
   fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *
+Allow: /
+Disallow: /404.html
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: ${site.siteUrl}/sitemap.xml
+Sitemap: ${site.siteUrl}/rss.xml
 `);
 
-  // sitemap.xml — noindex 페이지 제외
-  const urls = pages.filter((p) => !p.noindex).map((p) => `  <url>
+  // sitemap.xml — noindex 제외 + lastmod/changefreq/priority
+  const indexable = pages.filter((p) => !p.noindex);
+  const urls = indexable.map((p) => `  <url>
     <loc>${site.siteUrl}${p.path}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq(p.priority)}</changefreq>
     <priority>${p.priority.toFixed(1)}</priority>
   </url>`).join('\n');
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
@@ -969,6 +995,42 @@ Sitemap: ${site.siteUrl}/sitemap.xml
 ${urls}
 </urlset>
 `);
+
+  // rss.xml — 네이버 서치어드바이저 RSS 수집용 (색인 가속). 주요 페이지 우선.
+  const rssItems = indexable
+    .filter((p) => p.priority >= 0.6)
+    .sort((a, b) => b.priority - a.priority)
+    .slice(0, 200)
+    .map((p) => {
+      const loc = site.siteUrl + p.path;
+      const t = (p.title || site.brand).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      const d = (p.desc || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+      return `    <item>
+      <title>${t}</title>
+      <link>${loc}</link>
+      <guid isPermaLink="true">${loc}</guid>
+      <description>${d}</description>
+      <pubDate>${pubDate}</pubDate>
+    </item>`;
+    }).join('\n');
+  fs.writeFileSync(path.join(OUT, 'rss.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>${site.brand} · 경기도 출장마사지 안내</title>
+    <link>${site.siteUrl}/</link>
+    <atom:link href="${site.siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>경기도 31개 시·군 생활권별 출장마사지 방문 안내</description>
+    <language>ko</language>
+    <lastBuildDate>${pubDate}</lastBuildDate>
+${rssItems}
+  </channel>
+</rss>
+`);
+
+  // IndexNow 키 파일 (네이버·빙 즉시 색인 제출용)
+  if (site.indexNowKey) {
+    fs.writeFileSync(path.join(OUT, `${site.indexNowKey}.txt`), site.indexNowKey + '\n');
+  }
 
   // OG 이미지(자리표시자 SVG — 실제 배포 시 1200×630 PNG/WebP 교체 권장)
   const imgDir = path.join(OUT, 'assets', 'img');
