@@ -201,6 +201,8 @@ ${T.pageHero(crumbs, T.esc(r.h1), T.esc(r.intro))}
     ${areaCards}
     <h2>${T.esc(r.name)} 시·군 안내</h2>
     ${cityCards}
+    ${T.bookingFlowHtml()}
+    ${T.pricingCardsHtml()}
     ${T.checklistHtml()}
     ${T.faqHtml(faqs)}
     ${T.linkListHtml(r.links)}
@@ -253,6 +255,8 @@ ${T.pageHero(crumbs, T.esc(a.h1), T.esc(a.intro))}
   ${bodySections}
   <h2>포함 시·군 안내</h2>
   ${cityCards}
+  ${T.bookingFlowHtml()}
+  ${T.pricingCardsHtml()}
   ${T.checklistHtml()}
   ${T.faqHtml(faqs)}
   ${T.linkListHtml(a.links)}
@@ -745,6 +749,8 @@ function buildPrograms() {
     <li>하체 피로가 중심이면 — 발마사지</li>
     <li>둘이 함께라면 — 커플 관리</li>
   </ul>
+  ${T.bookingFlowHtml()}
+  ${T.pricingCardsHtml()}
   ${T.faqHtml(hubFaqs)}
   ${T.policyNoticeHtml()}
   ${T.whwHtml()}
