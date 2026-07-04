@@ -146,8 +146,12 @@ li { margin-bottom: var(--sp-2); }
 
 /* --- 요금 --------------------------------------------------------------- */
 .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--sp-5); max-width: 980px; margin: 0 auto; }
-.pricing-grid--inline { margin: var(--sp-4) 0; }
-.pricing-grid--inline .price-card { padding: var(--sp-6) var(--sp-4) var(--sp-5); }
+.pricing-grid--inline { margin: var(--sp-4) 0; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; gap: var(--sp-4); }
+.pricing-grid--inline .price-card { padding: var(--sp-6) var(--sp-3) var(--sp-5); }
+.pricing-grid--inline .price-card__price { font-size: 1.85rem; }
+@media (max-width: 720px) {
+  .pricing-grid--inline { grid-template-columns: 1fr; }
+}
 .price-card {
   position: relative; text-align: center;
   background: var(--c-surface); border: 1px solid var(--c-border);
