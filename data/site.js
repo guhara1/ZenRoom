@@ -14,9 +14,9 @@ module.exports = {
   // 히어로 배경 이미지(메인 + 모든 지역 페이지 상단).
   // 방법 1) 저장소에 커밋: assets/img/hero-bg.jpg 로 교체 → 상대경로 그대로 사용(권장, 가장 빠름)
   // 방법 2) 깃허브 raw URL 사용:
-  //   'https://raw.githubusercontent.com/guhara1/zenroom/main/assets/img/hero-bg.jpg'
+  //   'https://raw.githubusercontent.com/guhara1/zenroom/main/assets/img/hero-bg.webp'
   // 값이 없으면(null) 그라데이션 배경만 사용. 파일이 없어도 그라데이션으로 자연 폴백됩니다.
-  heroImage: '/assets/img/hero-bg.jpg',
+  heroImage: '/assets/img/hero-bg.webp',
   pricing: [
     { name: '60분 코스', price: '90,000', time: '60분', desc: '기본 컨디션·릴랙스 케어', featured: false },
     { name: '90분 코스', price: '150,000', time: '90분', desc: '아로마 포함 추천 구성', featured: true },
