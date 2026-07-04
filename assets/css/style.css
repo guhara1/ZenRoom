@@ -102,6 +102,14 @@ li { margin-bottom: var(--sp-2); }
   background-blend-mode: normal;
 }
 .hero h1 { max-width: 900px; margin-left: auto; margin-right: auto; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55); }
+/* 지역·상세 페이지 히어로 — 메인보다 낮은 높이, 좌측 정렬 브레드크럼 */
+.hero--page { padding: var(--sp-7) 0 var(--sp-6); text-align: center; }
+.hero--page .breadcrumb { justify-content: center; margin-bottom: var(--sp-4); }
+.hero--page .breadcrumb ol { justify-content: center; }
+.hero--page h1 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); }
+.hero__lead { max-width: 760px; margin: var(--sp-4) auto 0; color: var(--c-text-sub); font-size: 1.04rem; }
+.hero--image .breadcrumb a, .hero--image .breadcrumb li { color: var(--c-text-sub); }
+.hero--image .hero__lead { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5); }
 .hero p { max-width: 720px; margin: 0 auto var(--sp-6); color: var(--c-text-sub); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: var(--sp-3); justify-content: center; }
 

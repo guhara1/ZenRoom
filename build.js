@@ -19,6 +19,10 @@ const romanize = require('./lib/romanize');
 const dongContent = require('./lib/dongContent');
 
 const OUT = __dirname;
+// 로컬 히어로 이미지 파일이 실제로 있으면 전 페이지 히어로에 적용 (외부 URL은 templates에서 항상 적용)
+if (site.heroImage && !/^https?:\/\//.test(site.heroImage)) {
+  site.heroImageOk = fs.existsSync(path.join(OUT, site.heroImage.replace(/^\//, '')));
+}
 const pages = []; // sitemap.xml 수집: {path, priority, noindex}
 
 function write(relPath, html, { priority = 0.6, noindex = false } = {}) {
@@ -84,10 +88,10 @@ function buildMain() {
     ],
     ...SHARED_FAQ,
   ];
-  // 히어로 배경 이미지는 실제 파일이 있을 때만 적용 (없으면 그라데이션 폴백)
-  const heroImgExists = site.heroImage && fs.existsSync(path.join(OUT, site.heroImage.replace(/^\//, '')));
-  const heroClass = heroImgExists ? 'hero hero--image' : 'hero';
-  const heroStyle = heroImgExists ? ` style="--hero-img:url('${site.heroImage}')"` : '';
+  // 히어로 배경 이미지 (로컬 파일 존재 또는 외부 URL일 때 적용)
+  const heroBg = T.heroBg();
+  const heroClass = heroBg.on ? 'hero hero--image' : 'hero';
+  const heroStyle = heroBg.style;
   const body = `
 <section class="${heroClass}"${heroStyle}>
   <div class="container">
@@ -189,12 +193,9 @@ function buildRegions() {
     const areaCards = cardGrid(r.areas.map((s) => ({ name: areaBySlug[s].name, href: `/area/${s}/`, desc: areaBySlug[s].zones.slice(0, 3).join(' · ') })));
     const faqs = SHARED_FAQ;
     const body = `
+${T.pageHero(crumbs, T.esc(r.h1), T.esc(r.intro))}
 <section class="section">
   <div class="container article">
-    ${T.breadcrumbHtml(crumbs)}
-    <h1>${T.esc(r.h1)}</h1>
-    <p class="lead">${T.esc(r.intro)}</p>
-    ${T.ctaHtml()}
     ${bodySections}
     <h2>${T.esc(r.name)} 생활권 바로가기</h2>
     ${areaCards}
@@ -221,10 +222,8 @@ function buildAreas() {
   const hubPath = '/area/';
   const hubCrumbs = [['경기도 출장마사지', '/'], ['8대 생활권', hubPath]];
   const hubBody = `
+${T.pageHero(hubCrumbs, '경기도 8대 생활권 안내', '경기도를 실제 이용 흐름에 맞춘 8개 생활권으로 나눠 안내합니다. 도시명보다 머무는 생활권 기준으로 확인하면 예약이 빠르고 정확해집니다.')}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>경기도 8대 생활권 안내</h1>
-  <p class="lead">경기도를 실제 이용 흐름에 맞춘 8개 생활권으로 나눠 안내합니다. 도시명보다 머무는 생활권 기준으로 확인하면 예약이 빠르고 정확해집니다.</p>
   ${cardGrid(areas.map((a) => ({ name: a.name, href: `/area/${a.slug}/`, desc: a.zones.slice(0, 4).join(' · ') })))}
   ${T.hubIntroHtml('경기도 8대 생활권')}
   ${T.bookingFlowHtml()}
@@ -247,11 +246,8 @@ function buildAreas() {
       ...SHARED_FAQ,
     ];
     const body = `
+${T.pageHero(crumbs, T.esc(a.h1), T.esc(a.intro))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(a.h1)}</h1>
-  <p class="lead">${T.esc(a.intro)}</p>
-  ${T.ctaHtml()}
   <h2>대표 생활권</h2>
   <ul>${zones}</ul>
   ${bodySections}
@@ -285,10 +281,8 @@ function buildCities() {
     desc: '경기도 31개 시·군별 생활권과 출장마사지 예약 전 확인사항을 안내합니다.',
     path: hubPath, activePath: hubPath,
     schemas: [T.webPageSchema('경기도 31개 시·군 안내', '경기도 31개 시·군별 이용 기준 안내', hubPath), T.breadcrumbSchema(hubCrumbs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>경기도 31개 시·군 안내</h1>
-  <p class="lead">경기도 전 시·군의 생활권 특징과 예약 전 확인사항을 안내합니다. 정확한 주소 기준으로 확인하면 어느 지역이든 빠르게 안내됩니다.</p>
+  }, `${T.pageHero(hubCrumbs, '경기도 31개 시·군 안내', '경기도 전 시·군의 생활권 특징과 예약 전 확인사항을 안내합니다. 정확한 주소 기준으로 확인하면 어느 지역이든 빠르게 안내됩니다.')}
+<section class="section"><div class="container article">
   ${grouped}
   ${T.hubIntroHtml('경기도 31개 시·군')}
   ${T.bookingFlowHtml()}
@@ -325,11 +319,8 @@ function buildCities() {
   ${cardGrid(ad.dongs.map((d) => ({ name: d, href: `/${c.slug}/${romanize(d)}/` })), true)}`;
     }
     const body = `
+${T.pageHero(crumbs, `${T.esc(c.name)} 출장마사지 · ${T.esc(c.zones.slice(0, 3).join('·'))} 생활권 이용 안내`, T.esc(c.intro))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(c.name)} 출장마사지 · ${T.esc(c.zones.slice(0, 3).join('·'))} 생활권 이용 안내</h1>
-  <p class="lead">${T.esc(c.intro)}</p>
-  ${T.ctaHtml()}
   <h2>${T.esc(c.name)} 생활권 특징</h2>
   <p>${T.esc(c.living)}</p>
   <p>대표 생활권: ${c.zones.map((z) => T.esc(z)).join(', ')}</p>
@@ -386,11 +377,8 @@ function dongPage(c, gu, dongName) {
     [`${region.name} 생활권 보기`, `/${region.slug}/`],
   ];
   const body = `
+${T.pageHero(crumbs, `${T.esc(c.name)} ${T.esc(dongName)} 출장마사지 · ${T.esc(dc.label)} 방문 안내`, T.esc(dc.lead))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(c.name)} ${T.esc(dongName)} 출장마사지 · ${T.esc(dc.label)} 방문 안내</h1>
-  <p class="lead">${T.esc(dc.lead)}</p>
-  ${T.ctaHtml()}
   ${sectionsHtml}
   <h2>가까운 생활권 함께 보기</h2>
   <p>${T.esc(dongName)} 방문은 ${T.esc(c.name)}의 대표 생활권(${c.zones.map((z) => T.esc(z)).join(', ')}) 기준과 함께 안내됩니다. ${T.esc(c.name)} 전체의 숙소·오피스텔·아파트 이용 기준과 역세권 정보는 <a href="/${c.slug}/">${T.esc(c.name)} 안내 페이지</a>에서 확인할 수 있습니다.</p>
@@ -426,11 +414,8 @@ function buildAdmin() {
         ];
         const region = regionBySlug[c.region];
         const body = `
+${T.pageHero(crumbs, `${T.esc(c.name)} ${T.esc(gu.name)} 출장마사지 · 행정동별 방문 안내`, T.esc(gu.note))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(c.name)} ${T.esc(gu.name)} 출장마사지 · 행정동별 방문 안내</h1>
-  <p class="lead">${T.esc(gu.note)}</p>
-  ${T.ctaHtml()}
   <h2>${T.esc(gu.name)} 행정동 안내</h2>
   <p>방문하실 행정동을 선택해 주세요. 1동·2동처럼 번호로 나뉜 행정동은 생활권이 같아 대표 페이지 하나로 함께 안내합니다.</p>
   ${cardGrid(gu.dongs.map((d) => ({ name: d, href: `/${c.slug}/${gu.slug}/${romanize(d)}/` })), true)}
@@ -472,10 +457,8 @@ function buildLife() {
     desc: '광교·판교·동탄·일산 등 경기도 핵심 생활권별 이용 기준을 안내합니다.',
     path: hubPath, activePath: hubPath,
     schemas: [T.webPageSchema('경기도 핵심 생활권 안내', '경기도 핵심 생활권별 이용 기준 안내', hubPath), T.breadcrumbSchema(hubCrumbs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>경기도 핵심 생활권 안내</h1>
-  <p class="lead">실제 예약 문의가 많은 핵심 생활권을 모았습니다. 도시명보다 생활권 기준으로 확인하면 이동 기준과 건물 출입 방식을 더 정확하게 안내받을 수 있습니다.</p>
+  }, `${T.pageHero(hubCrumbs, '경기도 핵심 생활권 안내', '실제 예약 문의가 많은 핵심 생활권을 모았습니다. 도시명보다 생활권 기준으로 확인하면 이동 기준과 건물 출입 방식을 더 정확하게 안내받을 수 있습니다.')}
+<section class="section"><div class="container article">
   ${cardGrid(life.map((l) => ({ name: l.name, href: `/life/${l.slug}/` })), true)}
   ${T.hubIntroHtml('핵심 생활권')}
   ${T.bookingFlowHtml()}
@@ -499,11 +482,8 @@ function buildLife() {
       [`${region.name} 전체 안내`, `/${region.slug}/`],
     ];
     const body = `
+${T.pageHero(crumbs, `${T.esc(l.name)} 출장마사지 · 생활권 이용 기준 안내`, T.esc(l.intro))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(l.name)} 출장마사지 · 생활권 이용 기준 안내</h1>
-  <p class="lead">${T.esc(l.intro)}</p>
-  ${T.ctaHtml()}
   <h2>이 생활권의 특징</h2>
   <ul>${l.points.map((p) => `<li>${T.esc(p)}</li>`).join('')}</ul>
   <h2>숙소·오피스텔 이용 전 확인</h2>
@@ -534,10 +514,8 @@ function buildStations() {
     desc: '경기도 주요 역세권·KTX·SRT 인접 숙소의 출장마사지 이용 기준 안내.',
     path: hubPath, activePath: hubPath,
     schemas: [T.webPageSchema('경기도 역세권·터미널 안내', '경기도 주요 역세권 인접 숙소 이용 기준 안내', hubPath), T.breadcrumbSchema(hubCrumbs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>경기도 역세권·KTX·SRT·터미널 안내</h1>
-  <p class="lead">출장·여행 고객 문의가 많은 주요 역 인접 숙소권을 안내합니다. 출구별·노선별 구분 없이 역 생활권 기준으로 확인해 드립니다.</p>
+  }, `${T.pageHero(hubCrumbs, '경기도 역세권·KTX·SRT·터미널 안내', '출장·여행 고객 문의가 많은 주요 역 인접 숙소권을 안내합니다. 출구별·노선별 구분 없이 역 생활권 기준으로 확인해 드립니다.')}
+<section class="section"><div class="container article">
   ${cardGrid(stations.map((s) => ({ name: s.name, href: `/station/${s.slug}/` })), true)}
   ${T.hubIntroHtml('역세권·터미널 인접 숙소')}
   ${T.bookingFlowHtml()}
@@ -563,11 +541,8 @@ function buildStations() {
       ['호텔 정책 확인 안내', '/check/hotel-policy/'],
     ].filter(Boolean);
     const body = `
+${T.pageHero(crumbs, `${T.esc(s.name)} 인접 숙소 출장마사지 · 예약 전 확인 안내`, T.esc(s.note))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(s.name)} 인접 숙소 출장마사지 · 예약 전 확인 안내</h1>
-  <p class="lead">${T.esc(s.note)}</p>
-  ${T.ctaHtml()}
   <h2>역 인근 숙소 이용 전 확인</h2>
   <p>역 인접 호텔·레지던스·오피스텔은 건물마다 외부인 방문 정책이 다릅니다. 숙소명을 알려주시면 객실 방문 가능 여부를 예약 전에 확인해 드리며, 방문이 어려운 숙소는 인근 대안을 안내해 드립니다.</p>
   <h2>도착 시간 기준 예약 안내</h2>
@@ -598,10 +573,8 @@ function buildUse() {
     desc: '자택·호텔·오피스텔·산업단지 등 이용 장소별 예약 전 확인 기준 안내.',
     path: hubPath, activePath: hubPath,
     schemas: [T.webPageSchema('경기도 이용 장소별 확인 기준', '이용 장소별 예약 전 확인 기준 안내', hubPath), T.breadcrumbSchema(hubCrumbs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>이용 장소별 확인 기준</h1>
-  <p class="lead">같은 지역이라도 자택·호텔·오피스텔·산업단지 숙소는 예약 전 확인 항목이 다릅니다. 이용하실 장소 유형을 먼저 확인해 보세요.</p>
+  }, `${T.pageHero(hubCrumbs, '이용 장소별 확인 기준', '같은 지역이라도 자택·호텔·오피스텔·산업단지 숙소는 예약 전 확인 항목이 다릅니다. 이용하실 장소 유형을 먼저 확인해 보세요.')}
+<section class="section"><div class="container article">
   <h2>장소 유형별 안내</h2>
   ${cardGrid(places.map((p) => ({ name: p.name, href: `/use/${p.slug}/` })), true)}
   <h2>신도시 이용 기준</h2>
@@ -622,11 +595,8 @@ function buildUse() {
     const desc = `${p.name} 이용 시 예약 전 확인사항과 이용 기준을 안내합니다.`;
     const faqs = [...p.faq, ...SHARED_FAQ];
     const body = `
+${T.pageHero(crumbs, T.esc(p.h1), T.esc(p.intro))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(p.h1)}</h1>
-  <p class="lead">${T.esc(p.intro)}</p>
-  ${T.ctaHtml()}
   <h2>예약 전 확인 항목</h2>
   <ul class="checklist">${p.points.map((x) => `<li>${T.esc(x)}</li>`).join('')}</ul>
   <h2>진행 방식 안내</h2>
@@ -679,11 +649,8 @@ function buildUse() {
       isInd ? ['산업단지 인접 숙소 확인', '/check/industrial-area/'] : ['신도시 아파트 확인 안내', '/check/newtown-apartment/'],
     ].filter(Boolean);
     const body = `
+${T.pageHero(crumbs, `${T.esc(n.name)} ${isInd ? '인접 숙소' : '생활권'} 출장마사지 이용 기준`, T.esc(n.note))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(n.name)} ${isInd ? '인접 숙소' : '생활권'} 출장마사지 이용 기준</h1>
-  <p class="lead">${T.esc(n.note)}</p>
-  ${T.ctaHtml()}
   ${typeSection}
   ${T.bookingFlowHtml()}
   ${T.pricingNoteHtml()}
@@ -711,10 +678,8 @@ function buildChecks() {
     desc: '방문 주소·건물 출입·호텔 정책·예약 시간 등 예약 전 확인사항 안내.',
     path: hubPath, activePath: hubPath,
     schemas: [T.webPageSchema('예약 전 확인사항 안내', '예약 전 확인사항 전체 안내', hubPath), T.breadcrumbSchema(hubCrumbs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>예약 전 확인사항 안내</h1>
-  <p class="lead">예약 전에 아래 항목만 확인해 주시면 어느 지역이든 대기 없이 정확하게 안내됩니다. 항목별 자세한 기준은 각 페이지에서 확인하세요.</p>
+  }, `${T.pageHero(hubCrumbs, '예약 전 확인사항 안내', '예약 전에 아래 항목만 확인해 주시면 어느 지역이든 대기 없이 정확하게 안내됩니다. 항목별 자세한 기준은 각 페이지에서 확인하세요.')}
+<section class="section"><div class="container article">
   ${cardGrid(checks.map((c) => ({ name: c.name, href: `/check/${c.slug}/` })), true)}
   ${T.hubIntroHtml('예약 전 확인 항목')}
   ${T.bookingFlowHtml()}
@@ -732,11 +697,8 @@ function buildChecks() {
     const detailHtml = (c.body || []).map(([h, p]) => `<h2>${T.esc(h)}</h2><p>${T.esc(p)}</p>`).join('\n  ');
     const faqs = [...(c.faq || []), ...SHARED_FAQ];
     const body = `
+${T.pageHero(crumbs, T.esc(c.h1), T.esc(c.intro))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(c.h1)}</h1>
-  <p class="lead">${T.esc(c.intro)}</p>
-  ${T.ctaHtml()}
   <h2>핵심 확인 항목</h2>
   <ul class="checklist">${c.points.map((x) => `<li>${T.esc(x)}</li>`).join('')}</ul>
   ${detailHtml}
@@ -771,11 +733,8 @@ function buildPrograms() {
     desc: '스웨디시·아로마·타이·스포츠·발마사지 등 프로그램별 특징과 확인사항 안내.',
     path: hubPath, activePath: hubPath,
     schemas: [T.webPageSchema('마사지 프로그램 안내', '프로그램별 특징과 예약 전 확인사항 안내', hubPath), T.breadcrumbSchema(hubCrumbs), T.faqSchema(hubFaqs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(hubCrumbs)}
-  <h1>마사지 프로그램 안내 · 이용 전 확인해야 할 관리 유형</h1>
-  <p class="lead">프로그램명을 나열하는 페이지가 아니라, 어떤 관리가 본인에게 맞는지, 어떤 장소에서 이용 가능한지, 예약 전 무엇을 확인해야 하는지 안내하는 페이지입니다. 모든 프로그램은 60·90·120분 코스 기준으로 제공됩니다.</p>
-  ${T.ctaHtml()}
+  }, `${T.pageHero(hubCrumbs, '마사지 프로그램 안내 · 이용 전 확인해야 할 관리 유형', '프로그램명을 나열하는 페이지가 아니라, 어떤 관리가 본인에게 맞는지, 어떤 장소에서 이용 가능한지, 예약 전 무엇을 확인해야 하는지 안내하는 페이지입니다. 모든 프로그램은 60·90·120분 코스 기준으로 제공됩니다.')}
+<section class="section"><div class="container article">
   <h2>프로그램별 안내</h2>
   ${cardGrid(programs.map((p) => ({ name: p.name, href: `/program/${p.slug}/`, desc: p.intro.slice(0, 46) + '…' })))}
   <h2>프로그램 선택 기준</h2>
@@ -796,11 +755,8 @@ function buildPrograms() {
     const crumbs = [['경기도 출장마사지', '/'], ['마사지 프로그램', '/program/'], [p.name, pth]];
     const faqs = [...p.faq, ...SHARED_FAQ];
     const body = `
+${T.pageHero(crumbs, T.esc(p.h1), T.esc(p.intro))}
 <section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(p.h1)}</h1>
-  <p class="lead">${T.esc(p.intro)}</p>
-  ${T.ctaHtml()}
   <h2>어떤 이용자에게 맞나요?</h2>
   <p>${T.esc(p.fit)}</p>
   <h2>진행 방식과 압 조절</h2>
@@ -830,13 +786,16 @@ function buildPolicyAndContact() {
   const mk = (slug, title, desc, h1, inner, priority = 0.4) => {
     const pth = `/${slug}/`;
     const crumbs = [['경기도 출장마사지', '/'], [h1, pth]];
+    // inner 첫 <p class="lead">...</p>를 히어로 리드로 추출
+    const m = inner.match(/^\s*<p class="lead">([\s\S]*?)<\/p>/);
+    const lead = m ? m[1] : '';
+    const rest = m ? inner.slice(m[0].length) : inner;
     write(`${slug}`, T.layout({
       title: `${title}｜간다GO`, desc, path: pth,
       schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs)],
-    }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(crumbs)}
-  <h1>${T.esc(h1)}</h1>
-  ${inner}
+    }, `${T.pageHero(crumbs, T.esc(h1), lead, { cta: false })}
+<section class="section"><div class="container article">
+  ${rest}
 </div></section>`), { priority });
   };
 
@@ -914,10 +873,8 @@ function buildPolicyAndContact() {
     desc: '간다GO 전화예약(0508-202-4719)과 웹사이트 제작·제휴 문의 안내.',
     path: contactPath, activePath: contactPath,
     schemas: [T.webPageSchema('문의하기', '간다GO 예약·제휴 문의 안내', contactPath), T.breadcrumbSchema(contactCrumbs), T.organizationSchema()],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(contactCrumbs)}
-  <h1>문의하기</h1>
-  <p class="lead">예약 문의는 전화가 가장 빠릅니다. 방문 주소와 희망 시간을 알려주시면 바로 확인해 드립니다.</p>
+  }, `${T.pageHero(contactCrumbs, '문의하기', '예약 문의는 전화가 가장 빠릅니다. 방문 주소와 희망 시간을 알려주시면 바로 확인해 드립니다.')}
+<section class="section"><div class="container article">
   <h2>전화 예약</h2>
   <p style="font-size:1.6rem;font-weight:800"><a href="${site.phoneHref}">📞 ${site.phone}</a></p>
   <p>상호: 간다GO · 경기도 전지역 출장마사지 안내</p>
@@ -954,9 +911,8 @@ function buildMisc() {
     title: '사이트맵｜간다GO', desc: '간다GO 전체 페이지 목록 — 지역·생활권·프로그램·정책 안내.',
     path: smPath,
     schemas: [T.webPageSchema('사이트맵', '간다GO 전체 페이지 목록', smPath), T.breadcrumbSchema(smCrumbs)],
-  }, `<section class="section"><div class="container article">
-  ${T.breadcrumbHtml(smCrumbs)}
-  <h1>사이트맵</h1>
+  }, `${T.pageHero(smCrumbs, '사이트맵', '간다GO 전체 페이지를 한눈에 볼 수 있습니다.', { cta: false })}
+<section class="section"><div class="container article">
   ${group('메인·권역', [['경기도 홈', '/'], ...regions.map((r) => [r.name, `/${r.slug}/`])])}
   ${group('8대 생활권', areas.map((a) => [a.name, `/area/${a.slug}/`]))}
   ${group('31개 시·군', cities.map((c) => [c.name, `/${c.slug}/`]))}

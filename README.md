@@ -33,13 +33,21 @@ node build.js
 `assets/img/og-main.svg`는 자리표시자입니다 — 실제 배포 시 1200×630 PNG/WebP로 교체하고
 `data/site.js`의 `ogImage` 경로를 바꿔주세요.
 
-### 히어로 배경 이미지 업로드
+### 히어로 배경 이미지 업로드 (메인 + 모든 지역 페이지)
 
-메인 상단(히어로) 배경 이미지를 넣으려면 이미지 파일을 **`assets/img/hero-bg.jpg`**로
-저장하고 `node build.js`를 실행하면 자동 적용됩니다. (경로는 `data/site.js`의 `heroImage`에서
-변경 가능. 파일이 없으면 기존 그라데이션 배경이 그대로 유지됩니다.) 텍스트 가독성을 위해
-어두운 오버레이가 자동으로 얹히므로 밝은/어두운 이미지 모두 사용할 수 있습니다.
-권장: 가로 1920px 이상, 어두운 톤의 프리미엄 이미지.
+메인과 모든 지역 페이지 상단 히어로에 같은 배경 이미지가 들어갑니다. 이미지는 두 가지 방법으로
+지정할 수 있습니다(`data/site.js`의 `heroImage`).
+
+1. **저장소에 커밋(권장)** — 이미지를 **`assets/img/hero-bg.jpg`**로 교체(덮어쓰기)하고
+   커밋하면 끝. HTML이 `/assets/img/hero-bg.jpg`를 항상 참조하므로 재빌드 없이도 반영됩니다.
+   깃허브 웹에서 올릴 때 raw URL:
+   `https://raw.githubusercontent.com/guhara1/zenroom/main/assets/img/hero-bg.jpg`
+   (작업 브랜치 기준: `.../guhara1/zenroom/claude/ganda-go-footer-seo-9lmx6s/assets/img/hero-bg.jpg`)
+2. **외부 URL 사용** — `heroImage`에 `https://...` URL을 넣고 `node build.js` 실행.
+
+텍스트 가독성을 위해 어두운 오버레이가 자동으로 얹히므로 밝은/어두운 이미지 모두 사용 가능합니다.
+권장: 가로 1920px 이상, 어두운 톤의 프리미엄 이미지. 현재 `assets/img/hero-bg.jpg`는 임시
+그라데이션 자리표시자이니 실제 이미지로 교체하세요.
 
 ### 파비콘
 
