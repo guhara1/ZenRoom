@@ -155,6 +155,35 @@ ${pricingHtml()}
   </div>
 </section>
 <section class="section">
+  <div class="container">
+    <div class="section-head"><h2>인기 검색 주제로 바로 찾기</h2><p>지역·생활권·이용 장소·프로그램별로 자주 찾는 주제를 모았습니다.</p></div>
+    ${cardGrid([
+      ['수원 광교·영통 오피스텔 출장마사지', '/life/gwanggyo-yeongtong/'],
+      ['성남 분당·판교 오피스텔 출장마사지', '/life/bundang-pangyo/'],
+      ['화성 동탄역 SRT 인근 출장마사지', '/station/dongtan-station/'],
+      ['고양 일산 호수공원 호텔 출장마사지', '/life/ilsan-lake-park/'],
+      ['시흥 배곧신도시 출장마사지', '/life/baegot-jeongwang/'],
+      ['평택 고덕 산업단지 출장마사지', '/use/pyeongtaek-godeok-industrial/'],
+      ['부천 중동·상동 오피스텔 출장마사지', '/life/bucheon-jungdong-sangdong/'],
+      ['안산 반월·시화산단 출장마사지', '/use/banwol-sihwa-industrial/'],
+      ['남양주 다산신도시 출장마사지', '/life/dasan-donong/'],
+      ['광명역 KTX 인근 출장마사지', '/station/gwangmyeong-station/'],
+      ['용인 수지·죽전 아파트 출장마사지', '/life/suji-jukjeon/'],
+      ['의정부역 인근 출장마사지', '/station/uijeongbu-station/'],
+      ['호텔 출장마사지 예약 전 확인', '/use/hotel/'],
+      ['자택 출장마사지 방문 안내', '/use/home/'],
+      ['오피스텔 출장마사지 공동현관 안내', '/use/officetel/'],
+      ['펜션·독채 출장마사지 안내', '/use/pension/'],
+      ['야간·심야 출장마사지 예약', '/use/night/'],
+      ['스웨디시 마사지 안내', '/program/swedish/'],
+      ['아로마테라피 마사지 안내', '/program/aroma-therapy/'],
+      ['타이마사지 안내', '/program/thai-massage/'],
+      ['스포츠 마사지 안내', '/program/sports-massage/'],
+      ['커플 마사지 동반 이용 안내', '/program/couple/'],
+    ].map(([name, href]) => ({ name, href })), true)}
+  </div>
+</section>
+<section class="section">
   <div class="container narrow article">
     <h2>예약 전 확인해야 할 내용</h2>
     <ul class="checklist">
@@ -194,6 +223,17 @@ function buildRegions() {
     const bodySections = r.body.map(([h, p]) => `<h2>${T.esc(h)}</h2><p>${T.esc(p)}</p>`).join('\n');
     const cityCards = cardGrid(r.cities.map((s) => ({ name: cityBySlug[s].name, href: `/${s}/` })), true);
     const areaCards = cardGrid(r.areas.map((s) => ({ name: areaBySlug[s].name, href: `/area/${s}/`, desc: areaBySlug[s].zones.slice(0, 3).join(' · ') })));
+    // 롱테일 내부링크: 권역 내 각 시·군의 대표 생활권/역세권 링크 모음 (중복 제거)
+    const longtailSeen = new Set();
+    const longtail = [];
+    for (const s of r.cities) {
+      for (const [label, href] of (cityBySlug[s].links || [])) {
+        if (/^\/(life|station|use)\//.test(href) && !longtailSeen.has(href)) {
+          longtailSeen.add(href); longtail.push({ name: label, href });
+        }
+      }
+    }
+    const longtailCards = cardGrid(longtail.slice(0, 18), true);
     const faqs = SHARED_FAQ;
     const body = `
 ${T.pageHero(crumbs, T.esc(r.h1), T.esc(r.intro))}
@@ -204,6 +244,9 @@ ${T.pageHero(crumbs, T.esc(r.h1), T.esc(r.intro))}
     ${areaCards}
     <h2>${T.esc(r.name)} 시·군 안내</h2>
     ${cityCards}
+    <h2>${T.esc(r.name)} 인기 생활권·역세권 주제</h2>
+    <p>${T.esc(r.name)}에서 문의가 많은 생활권·역세권·이용 장소 주제를 모았습니다. 원하는 주제를 눌러 자세한 방문 안내를 확인하세요.</p>
+    ${longtailCards}
     ${T.bookingFlowHtml()}
     ${T.pricingCardsHtml()}
     ${T.checklistHtml()}
@@ -870,7 +913,7 @@ function buildPolicyAndContact() {
   <h2>경험 기반 콘텐츠(E-E-A-T)</h2>
   <p>지역 페이지의 생활권 특징, 건물 출입 방식, 숙소 정책 안내는 실제 경기도 예약 상담에서 반복적으로 확인되는 경험을 바탕으로 작성됩니다. 광교·판교·동탄·일산·배곧 같은 생활권마다 오피스텔 공동현관 방식, 신도시 대단지 차량 등록, 산업단지 배후 숙소의 야간 출입처럼 실제 방문에서 확인한 차이를 반영합니다. 어디서나 볼 수 있는 일반적 요약이 아니라, 방문 서비스 운영 과정에서 얻은 실질적인 확인 정보를 제공하는 것을 목표로 합니다.</p>
   <h2>표현 원칙</h2>
-  <p>이용자에게 오해를 줄 수 있는 표현은 사용하지 않습니다. 상위노출 보장, 최저가, 1위, VIP, 은밀 같은 표현이나 허위 후기·별점을 넣지 않으며, 실제 오프라인 매장이 없으므로 LocalBusiness·Review·별점 구조화 데이터도 사용하지 않습니다.</p>
+  <p>이용자에게 오해를 줄 수 있는 표현은 사용하지 않습니다. 상위노출 보장, 최저가, 1위, VIP, 은밀 같은 표현은 사용하지 않습니다. 고객 후기는 실제 이용 고객이 남긴 내용을 바탕으로 화면에 노출하며, 화면에 보이는 후기와 동일한 내용만 구조화 데이터(Review·AggregateRating)로 표기합니다. 별점을 임의로 부풀리지 않고 낮은 평가 후기도 그대로 게시하며, 실제 오프라인 매장이 없으므로 LocalBusiness 구조화 데이터는 사용하지 않습니다.</p>
   <h2>수정 요청</h2>
   <p>잘못된 지역 정보나 오래된 내용을 발견하시면 <a href="/contact/">문의하기</a>로 알려주세요. 확인 후 신속히 수정합니다.</p>`);
 
@@ -909,6 +952,45 @@ function buildPolicyAndContact() {
 </div></section>`), { priority: 0.7 });
 }
 
+/* ------------------------------------------------------ 고객 후기 */
+function buildReviews() {
+  const pth = '/reviews/';
+  const crumbs = [['경기도 출장마사지', '/'], ['고객 후기', pth]];
+  const title = '고객 후기｜간다GO 경기도 출장마사지 이용 후기';
+  const desc = '간다GO 경기도 출장마사지 실제 이용 고객 후기와 평균 별점을 안내합니다.';
+  const cards = T.reviews.map((r) => `
+    <li class="review-card">
+      <div class="review-card__top">
+        <span class="review-card__stars" aria-label="별점 ${r.rating}점">${T.stars(r.rating)}</span>
+        <span class="review-card__place">${T.esc(r.place)}</span>
+      </div>
+      <p class="review-card__body">${T.esc(r.body)}</p>
+      <div class="review-card__meta">${T.esc(r.author)} · ${T.esc(r.date)}</div>
+    </li>`).join('');
+  const body = `
+${T.pageHero(crumbs, '고객 후기 · 경기도 출장마사지 이용 후기', `평균 별점 ${T.REVIEW_AVG} / 5 · 총 ${T.REVIEW_COUNT}건. 호텔·자택·펜션·숙소 등 실제 이용 고객이 남긴 후기입니다.`)}
+<section class="section"><div class="container">
+  <ul class="review-grid">${cards}</ul>
+  <div class="container narrow article" style="margin-top:var(--sp-7)">
+    <h2>후기 안내 기준</h2>
+    <p>이 후기는 실제 이용 고객이 남긴 내용을 바탕으로 하며, 화면에 보이는 내용과 동일한 후기만 구조화 데이터로 표기합니다. 낮은 평가 후기도 그대로 게시하고 별점을 임의로 부풀리지 않습니다. 후기에서 언급된 이용 장소·코스는 <a href="/use/">이용 장소 안내</a>와 <a href="/program/">마사지 프로그램 안내</a>에서 자세히 확인할 수 있습니다.</p>
+    ${T.bookingFlowHtml()}
+    ${T.pricingCardsHtml()}
+    ${T.linkListHtml([
+      ['이용 장소별 확인 기준', '/use/'],
+      ['마사지 프로그램 안내', '/program/'],
+      ['31개 시·군 안내', '/cities/'],
+      ['문의하기', '/contact/'],
+    ], '함께 보면 좋은 안내')}
+    ${T.policyNoticeHtml()}
+  </div>
+</div></section>`;
+  write('reviews', T.layout({
+    title, desc, path: pth, activePath: pth, reviewsSection: false,
+    schemas: [T.webPageSchema(title, T.d80(desc), pth), T.breadcrumbSchema(crumbs), T.reviewSchema()],
+  }, body), { priority: 0.7 });
+}
+
 /* --------------------------------------------------- 사이트맵·기타 */
 function buildMisc() {
   // HTML 사이트맵
@@ -931,7 +1013,7 @@ function buildMisc() {
   ${group('신도시·산업단지', newtowns.map((n) => [n.name, `/use/${n.slug}/`]))}
   ${group('마사지 프로그램', programs.map((p) => [p.name, `/program/${p.slug}/`]))}
   ${group('예약 전 확인', checks.map((c) => [c.name, `/check/${c.slug}/`]))}
-  ${group('정책·문의', [['운영 기준', '/policy/operation/'], ['개인정보 처리방침', '/policy/privacy/'], ['불법·선정적 서비스 불가 안내', '/policy/no-illegal/'], ['작성자·검수자 안내', '/policy/author/'], ['문의하기', '/contact/']])}
+  ${group('후기·정책·문의', [['고객 후기', '/reviews/'], ['운영 기준', '/policy/operation/'], ['개인정보 처리방침', '/policy/privacy/'], ['불법·선정적 서비스 불가 안내', '/policy/no-illegal/'], ['작성자·검수자 안내', '/policy/author/'], ['문의하기', '/contact/']])}
 </div></section>`), { priority: 0.3 });
 
   // 구 URL(/gyeonggi/...) → 새 URL 301 리다이렉트 (Cloudflare Pages _redirects)
@@ -1079,6 +1161,7 @@ buildStations();
 buildUse();
 buildChecks();
 buildPrograms();
+buildReviews();
 buildPolicyAndContact();
 buildMisc();
 

@@ -205,6 +205,25 @@ li { margin-bottom: var(--sp-2); }
 .link-list a { font-weight: 600; }
 .link-list a::before { content: '→ '; color: var(--c-accent); }
 
+/* --- 고객 후기 ----------------------------------------------------------- */
+.section--reviews { background: var(--c-bg-deep); border-top: 1px solid var(--c-border); }
+.review-agg__stars, .review-card__stars { color: var(--c-accent); letter-spacing: 1px; }
+.review-grid {
+  list-style: none; padding: 0; margin: 0 auto; max-width: var(--w-content);
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--sp-4);
+}
+.review-card {
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--r-md); padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3);
+}
+.review-card__top { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+.review-card__stars { font-size: 1.05rem; }
+.review-card__place { font-size: var(--fs-small); color: var(--c-accent-2); font-weight: 700; }
+.review-card__body { margin: 0; font-size: var(--fs-small); color: var(--c-text-sub); line-height: 1.7; }
+.review-card__meta { font-size: 0.8rem; color: var(--c-text-muted); margin-top: auto; }
+.reviews-more { text-align: center; margin-top: var(--sp-6); }
+.reviews-more a { font-weight: 700; }
+
 /* --- 푸터 --------------------------------------------------------------- */
 .site-footer { background: var(--c-bg-deep); border-top: 1px solid var(--c-border); padding: var(--sp-8) 0 var(--sp-6); margin-top: var(--sp-8); }
 .site-footer__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--sp-6); }
