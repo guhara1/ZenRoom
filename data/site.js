@@ -11,6 +11,9 @@ module.exports = {
   telegramBuild: 'https://t.me/gandago_web',
   telegramPartner: 'https://t.me/gandago_partner',
   ogImage: '/assets/img/og-main.svg',
+  // 히어로(메인 상단) 배경 이미지. assets/img/에 파일을 넣고 경로를 지정하세요.
+  // 값이 없으면(null) 기존 그라데이션 배경이 그대로 쓰입니다.
+  heroImage: '/assets/img/hero-bg.jpg',
   pricing: [
     { name: '60분 코스', price: '90,000', time: '60분', desc: '기본 컨디션·릴랙스 케어', featured: false },
     { name: '90분 코스', price: '150,000', time: '90분', desc: '아로마 포함 추천 구성', featured: true },

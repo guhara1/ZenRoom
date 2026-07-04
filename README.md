@@ -33,6 +33,20 @@ node build.js
 `assets/img/og-main.svg`는 자리표시자입니다 — 실제 배포 시 1200×630 PNG/WebP로 교체하고
 `data/site.js`의 `ogImage` 경로를 바꿔주세요.
 
+### 히어로 배경 이미지 업로드
+
+메인 상단(히어로) 배경 이미지를 넣으려면 이미지 파일을 **`assets/img/hero-bg.jpg`**로
+저장하고 `node build.js`를 실행하면 자동 적용됩니다. (경로는 `data/site.js`의 `heroImage`에서
+변경 가능. 파일이 없으면 기존 그라데이션 배경이 그대로 유지됩니다.) 텍스트 가독성을 위해
+어두운 오버레이가 자동으로 얹히므로 밝은/어두운 이미지 모두 사용할 수 있습니다.
+권장: 가로 1920px 이상, 어두운 톤의 프리미엄 이미지.
+
+### 파비콘
+
+`favicon.svg`(브랜드 오렌지 'G' 마크)와 `favicon-32.png`, `apple-touch-icon.png`가 생성되어
+있습니다. `favicon.svg`를 수정하면 PNG는 다음 명령으로 다시 렌더링하세요(선택):
+Playwright로 SVG→PNG 변환.
+
 ## 구조
 
 - `data/` — 지역·생활권·역세권·프로그램·정책 콘텐츠 데이터 (페이지별 고유 본문)

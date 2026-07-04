@@ -84,8 +84,12 @@ function buildMain() {
     ],
     ...SHARED_FAQ,
   ];
+  // 히어로 배경 이미지는 실제 파일이 있을 때만 적용 (없으면 그라데이션 폴백)
+  const heroImgExists = site.heroImage && fs.existsSync(path.join(OUT, site.heroImage.replace(/^\//, '')));
+  const heroClass = heroImgExists ? 'hero hero--image' : 'hero';
+  const heroStyle = heroImgExists ? ` style="--hero-img:url('${site.heroImage}')"` : '';
   const body = `
-<section class="hero">
+<section class="${heroClass}"${heroStyle}>
   <div class="container">
     <h1>경기도 출장마사지 · 31개 시군 생활권별 방문 가능 지역 안내</h1>
     <p>수원, 성남, 용인, 고양, 부천, 화성, 평택, 안산, 남양주, 파주 등 경기도 31개 시·군 주요 생활권과 호텔·오피스텔·자택 이용 전 확인사항을 안내합니다.</p>
@@ -341,6 +345,8 @@ function buildCities() {
   <p>${T.esc(c.extra)}</p>
   <h2>야간 예약 전 확인</h2>
   <p>${T.esc(nightNote)}</p>
+  ${T.bookingFlowHtml()}
+  ${T.pricingCardsHtml()}
   ${T.checklistHtml([`${c.name} 안에서도 어느 생활권(${c.zones.slice(0, 3).join('·')})인지 확인했나요?`])}
   ${T.faqHtml(faqs)}
   ${T.linkListHtml(links, '관련 지역 보기')}
@@ -406,6 +412,8 @@ function buildAdmin() {
   for (const c of cities) {
     const ad = admin[c.slug];
     if (!ad) continue;
+    // 구 없는 시·군은 전체 동 목록을 인접 동 맥락 생성에 사용
+    if (ad.dongs) c._dongs = ad.dongs;
     if (ad.gus) {
       for (const gu of ad.gus) {
         const pth = `/${c.slug}/${gu.slug}/`;
@@ -1019,6 +1027,19 @@ ${urls}
   <text x="90" y="380" font-family="Pretendard, sans-serif" font-size="42" fill="#b9c6d9">경기도 31개 시·군 출장마사지 안내</text>
   <rect x="90" y="440" width="430" height="76" rx="38" fill="url(#a)"/>
   <text x="130" y="490" font-family="Pretendard, sans-serif" font-size="34" font-weight="700" fill="#14100b">전화예약 0508-202-4719</text>
+</svg>
+`);
+
+  // 파비콘 (SVG) — 오렌지 라운드 사각형 + 흰색 'G' 마크
+  fs.writeFileSync(path.join(OUT, 'favicon.svg'), `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff8a2a"/>
+      <stop offset="100%" stop-color="#f56300"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#f)"/>
+  <text x="32" y="45" text-anchor="middle" font-family="Pretendard, 'Segoe UI', sans-serif" font-size="40" font-weight="800" fill="#ffffff">G</text>
 </svg>
 `);
 }
